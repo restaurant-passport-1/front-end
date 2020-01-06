@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import RestaurantList from '../RestaurantList/RestaurantList';
 
 const Home = () => {
   const [state, setState] = useState([]);
@@ -17,8 +18,8 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome Everyone</h1>
-      {state.map(item => {
-        return <h5>{item.prisonName}</h5>;
+      {state.map(list => {
+        return <RestaurantList list={list} key={list.id} />;
       })}
     </div>
   );
