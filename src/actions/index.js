@@ -1,6 +1,6 @@
 import React from 'react';
 // import axios from 'axios';
-import {axiosWithAuth} from '../utils/axiosWithAuth';
+import {axiosWithAuth} from '../utils/axioswithauth'
 import jwtDecode from 'jwt-decode';
 
 export const LOGIN_START = 'LOGIN_START';
@@ -11,7 +11,7 @@ export const login = state => dispatch => {
   dispatch({ type: LOGIN_START });
   //return will return axioswithauth vs axios
   return axiosWithAuth()
-    .post('/api/users/login', state)
+    .post('/api/auth/login', state)
     .then(res => {
       console.log(res);
       const userInfo = jwtDecode(res.data.token);
@@ -29,7 +29,7 @@ export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 export const signup = state => dispatch => {
   dispatch({ type: SIGNUP_START });
   return axiosWithAuth()
-    .post('/api/users/register', state)
+    .post('/api/auth/register', state)
     .then(res => {
       console.log(res);
       localStorage.setItem('token', res.data); //whatever token obect key is on object
@@ -62,6 +62,7 @@ export const fetchRestaurant = state => dispatch => {
 export const ADD_RESTAURANT_START = 'ADD_RESTAURANT_START';
 export const ADD_RESTAURANT_SUCCESS = 'ADD_RESTAURANT_SUCCESS';
 export const ADD_RESTAURANT_ERROR = 'ADD_RESTAURANT_ERROR';
+
 export const addRestaurant = state => dispatch => {
   dispatch({type: ADD_RESTAURANT_START});
   return axiosWithAuth()
@@ -80,6 +81,7 @@ export const addRestaurant = state => dispatch => {
 export const UPDATE_RESTAURANT_START = 'UPDATE_RESTAURANT_START';
 export const UPDATE_RESTAURANT_SUCCESS = 'UPDATE_RESTAURANT_SUCCESS';
 export const UPDATE_RESTAURANT_ERROR = 'UPDATE_RESTAURANT_ERROR';
+
 export const updateRestaurant = state => dispatch => {
   dispatch({type: UPDATE_RESTAURANT_START});
   return axiosWithAuth()
