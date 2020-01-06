@@ -4,7 +4,7 @@ import {Route} from 'react-router-dom';
 import './App.css';
 import Home from './components/Home/Home';
 import RestaurantList from './components/RestaurantList/RestaurantList';
-import RestaurantDetail from './components/Restaurant/Restaurant';
+import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail';
 
 function App() {
   return (
