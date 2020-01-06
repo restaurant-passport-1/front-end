@@ -11,9 +11,9 @@ export default function MyPassport() {
         <h1>My Passport</h1>
         <h2>Las Vegas Stamped Restaurants</h2>
         <div className="passport-restaurants-grid">
-        {dummyPassportRestaurantList.map((restaurant, index) => {
-          return <PassportRestaurantCard id={index} />;
-        })}
+          {dummyPassportRestaurantList.map((restaurant, index) => {
+            return <PassportRestaurantCard id={index} />;
+          })}
         </div>
       </div>
     </>
