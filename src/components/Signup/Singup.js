@@ -10,7 +10,7 @@ const Signup = () => {
 
   const handleChange = e => {
     setState({...state, [e.target.name]: e.target.value});
-    // console.log([e.target.name], e.target.value);
+    console.log([e.target.name], e.target.value);
   };
 
   return (
@@ -30,7 +30,7 @@ const Signup = () => {
         <div className='inputs'>
           <label>Enter password</label>
           <input
-            type='text'
+            type='password'
             name='password'
             onChange={handleChange}
             value={state.password}
@@ -51,13 +51,14 @@ const Signup = () => {
         <div className='inputs'>
           <label>Enter email</label>
           <input
-            type='text'
+            type='email'
             name='email'
             onChange={handleChange}
             value={state.email}
             placeholder='sunil@gmail.com'
           />
         </div>
+        <button>Sign up</button>
       </form>
     </div>
   );
