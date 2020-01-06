@@ -9,7 +9,7 @@ export default function Navbar() {
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">My Passport</a></li>
           <li><a href="#">Settings</a></li>
-          <li><a href="#">Search</a></li>
+          <li><a href="#"><i class="material-icons">search</i></a></li>
         </ul>
       </div>
     </nav>
