@@ -1,21 +1,32 @@
 import React from 'react';
-import RestaurantLoginPage from './components/accounts/restaurantLoginPage'
-import RestaurantCreateAccountPage from './components/accounts/restaurantCreateAccountPage'
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import store from './store';
+import { Provider } from 'react-redux';
 import './App.css';
 import Dashboard from './components/dashboard/dashboard';
 import NavBar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
+import Home from './components/Home/Home';
+import RestaurantList from './components/RestaurantList/RestaurantList';
+import RestaurantDetail from './components/Restaurant/Restaurant';
 
 function App() {
-	return (
-		<div className='App'>
-			<Route exact path='/' component={RestaurantLoginPage} />
-			<Route path='/register' component={RestaurantCreateAccountPage} />
-			<Route path='/dashboard' component={NavBar} />
+  return (
+   <Provider store={store}>
+    <div className='App'>
+      <Router>
+      <Navbar />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/restaurantlist' component={RestaurantList} />
+        <Route exact path='/restaurantlist/:id' component={RestaurantDetail} />
+        <Route exact path='/mypassport' component={MyPassport}>
 			<Route path='/dashboard' component={Dashboard} />
 			<Route path='/dashboard' component={Footer} />
-		</div>
-	);
+      </Router>
+    </div>
+    </Provider>
+  );
 }
+
+
 export default App;
