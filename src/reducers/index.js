@@ -16,57 +16,55 @@ import {
     UPDATE_RESTAURANT_ERROR
   } from '../actions/index'
   
-  export const initialState = {
+  const initialState = {
     user: [],
-    loggingIn: false,
     username: '',
     error: '',
-    signingUp: false,
     isFetching: false,
-    isEditing: false,
-    restaurants: [],
-    token: localStorage.getItem('token')
+    restaurants: []
+
   };
   
-  export const passportReducer = (state = initialState, action) => {
+  export default (state = initialState, action) => {
     switch (action.type) {
       case LOGIN_START:
         return {
           ...state,
-          loggingIn: true
+          isFetching: true
         };
       case LOGIN_SUCCESS:
         return {
           ...state,
-          loggingIn: false,
-          username: action.payload.username
+          isFetching: false,
+          username: action.payload
         };
       case LOGIN_ERROR:
         return {
           ...state,
-          loggingIn: false
+          isFetching: false,
+          error: action.payload
           //TODO: error: action.payload
         };
   
       case SIGNUP_START:
         return {
           ...state,
-          signingUp: true
+          isFetching: true
         };
   
       case SIGNUP_SUCCESS:
         return {
           ...state,
           user: action.payload,
-          signingUp: false,
-          token: action.payload
+          isFetching: false
+       
         };
       //all of this above can change depending on how api/backend is structure just a base idea
   
       case SIGNUP_ERROR:
         return {
           ...state,
-          signingUp: false,
+         isFetching: false,
           error: action.payload
         };
   
