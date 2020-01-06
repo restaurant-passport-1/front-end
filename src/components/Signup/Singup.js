@@ -13,10 +13,14 @@ const Signup = () => {
     console.log([e.target.name], e.target.value);
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
+
   return (
     <div className='container'>
       <h1>Welcome to signup form</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className='inputs'>
           <label>Enter username</label>
           <input
