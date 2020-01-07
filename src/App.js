@@ -1,4 +1,5 @@
 import React from 'react';
+import 'materialize-css/dist/css/materialize.min.css';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import store from './store';
 import { Provider } from 'react-redux';
@@ -10,16 +11,19 @@ import Home from './components/Home/Home';
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import RestaurantDetail from './components/Restaurant/Restaurant';
 
+import MyPassport from './components/addedrestaurants/addedrestaurants';
+
 function App() {
   return (
    <Provider store={store}>
     <div className='App'>
       <Router>
-      <Navbar />
+      <NavBar />
         <Route exact path='/' component={Home} />
+        
         <Route exact path='/restaurantlist' component={RestaurantList} />
         <Route exact path='/restaurantlist/:id' component={RestaurantDetail} />
-        <Route exact path='/mypassport' component={MyPassport}>
+        <Route exact path='/mypassport' component={MyPassport} />
 			<Route path='/dashboard' component={Dashboard} />
 			<Route path='/dashboard' component={Footer} />
       </Router>
