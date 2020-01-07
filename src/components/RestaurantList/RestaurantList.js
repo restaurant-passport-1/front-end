@@ -6,14 +6,14 @@ import Restaurant from '../Restaurant/Restaurant';
 import '../../styles/restaurantlist.css';
 
 const RestaurantList = props => {
-  const [state, setState] = useState([]);
+  const [list, setList] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
       .get('https://restaurantpassport1.herokuapp.com/api/auth/passport')
       .then(response => {
         console.log(response);
-        setState(response.data);
+        setList(response.data);
       })
       .catch();
   }, []);
@@ -22,11 +22,11 @@ const RestaurantList = props => {
     <div className='container'>
       <h4 className='res'>Restaurant List</h4>
       <div className='list'>
-        {state.map(list => {
+        {list && list.map(each => {
           return (
-            <Link to={`/restaurantlist/${list.id}`}>
+            <Link to={`/restaurantlist/${each.id}`}>
               <div>
-                <Restaurant list={list} key={list.id} />
+                <Restaurant each={each} key={each.id} />
               </div>
             </Link>
           );
