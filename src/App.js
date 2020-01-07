@@ -16,16 +16,11 @@ import Home from './components/Home/Home';
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail';
 import UpdateRestaurant from './components/UpdateRestaurant/UpdateRestaurant';
-<<<<<<< HEAD
-import Login2 from './components/Login/Login2';
-import MyPassport from './components/addedrestaurants/addedrestaurants';
-=======
 import Login from './components/Login/Login';
->>>>>>> 2d3f70f92c6cf7529d54413488b69f8fc8d7110d
+import MyPassport from './components/addedrestaurants/addedrestaurants';
 
 function App() {
 
-  
   return (
 
     <Provider store={store}>
