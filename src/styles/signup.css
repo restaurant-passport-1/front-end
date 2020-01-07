@@ -26,3 +26,9 @@ form {
   font-weight: bold;
   color: dodgerblue;
 }
+
+.text {
+  margin-left: 20px;
+  padding-top: 9px;
+  color: green;
+}

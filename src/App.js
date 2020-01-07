@@ -12,6 +12,7 @@ import Home from './components/Home/Home';
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail';
 import UpdateRestaurant from './components/UpdateRestaurant/UpdateRestaurant';
+import Login from './components/Login/Login';
 
 function App() {
   return (
@@ -19,8 +20,10 @@ function App() {
       <div className='App'>
         <Router>
           <Navbar />
-          <Signup />
           <Route exact path='/' component={Home} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/login' component={Login} />
+
           <Route exact path='/restaurantlist' component={RestaurantList} />
           <Route exact path='/restaurantlist/:id' component={RestaurantDetail} />
           <Route exact path='/mypassport' component={MyPassport} />
