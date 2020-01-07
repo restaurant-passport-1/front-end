@@ -20,7 +20,7 @@ function App() {
       <Router>
       <NavBar />
         <Route exact path='/' component={Home} />
-        
+       
         <Route exact path='/restaurantlist' component={RestaurantList} />
         <Route exact path='/restaurantlist/:id' component={RestaurantDetail} />
         <Route exact path='/mypassport' component={MyPassport} />

@@ -69,13 +69,13 @@ export const signup = user => dispatch => {
 };
 
 
-export const fetchRestaurant = state => dispatch => {
+export const fetchRestaurant = user => dispatch => {
   dispatch({type: FETCH_RESTAURANT_START});
   return axiosWithAuth()
-  .get(`/api/auth/passport/${id}/user`, state)
+  .get(`/api/auth/passport/${user.id}/user`)
   .then(res => {
     console.log('get', res)
-    localStorage.setItem('token', res.data);
+    // localStorage.setItem('token', res.data);
     dispatch({type: FETCH_RESTAURANT_SUCCESS, payload: res.data});
   })
   .catch(err => {
@@ -90,13 +90,13 @@ export const fetchRestaurant = state => dispatch => {
 
 
 
-export const addRestaurant = state => dispatch => {
+export const addRestaurant = restaurant => dispatch => {
   dispatch({type: ADD_RESTAURANT_START});
   return axiosWithAuth()
-  .post('/api/auth/passport', state)
+  .post('/api/auth/passport', restaurant)
   .then(res => {
     console.log('get', res)
-    localStorage.setItem('token', res.data);
+    // localStorage.setItem('token', res.data);
     dispatch({type: ADD_RESTAURANT_SUCCESS, payload: res.data});
   })
   .catch(err => {
@@ -108,13 +108,13 @@ export const addRestaurant = state => dispatch => {
 
 
 
-export const updateRestaurant = state => dispatch => {
+export const updateRestaurant = restaurant => dispatch => {
   dispatch({type: UPDATE_RESTAURANT_START});
   return axiosWithAuth()
-  .put('/api/auth/passport/:id', state)
+  .put('/api/auth/passport/:id', restaurant)
   .then(res => {
     console.log('get', res)
-    localStorage.setItem('token', res.data);
+    // localStorage.setItem('token', res.data);
     dispatch({type: UPDATE_RESTAURANT_SUCCESS, payload: res.data});
   })
   .catch(err => {
