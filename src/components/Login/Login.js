@@ -1,21 +1,37 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import { login } from '../../actions';
+import { connect } from 'react-redux';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
 import '../../styles/signup.css';
 
-export const Login = () => {
-  const [state, setState] = useState({
+export const Login = (props) => {
+  const [user, setUser] = useState({
     username: '',
     password: ''
   });
 
+  const { username, password } = user;
+
   const handleChange = e => {
-    setState({...state, [e.target.name]: e.target.value});
-    console.log([e.target.name], e.target.value);
+    setUser({...user, 
+      [e.target.name]: e.target.value});
+   
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    props.login(user);
+    setUser({
+        username:'',
+        password: ''
+    });
+
+    M.toast({html: `Login Successfull by ${username}`})
+
+    props.history.push('/');
+
   };
 
   return (
@@ -29,8 +45,9 @@ export const Login = () => {
               type='text'
               name='username'
               onChange={handleChange}
-              value={state.name}
-              placeholder='Sunil Karki'
+              value={username}
+              placeholder='Username'
+              required
             />
           </div>
           <div className='inputs'>
@@ -39,8 +56,9 @@ export const Login = () => {
               type='password'
               name='password'
               onChange={handleChange}
-              value={state.password}
+              value={password}
               placeholder='********'
+              required
             />
             <button className='btn'>Login</button>
             <Link to='/signup'>
@@ -53,4 +71,5 @@ export const Login = () => {
   );
 };
 
-export default Login;
+
+export default connect(null, {login})(Login);

@@ -3,7 +3,7 @@ import { signup } from "../../actions";
 import { connect } from "react-redux";
 
 const Register = props => {
-  const { signup, error } = props;
+  const { signup } = props;
   const initialState = {
     username: "",
     password: "",
@@ -11,6 +11,7 @@ const Register = props => {
     city: "",
     email: ""
   };
+  
   const [user, setUser] = useState(initialState);
   const { username, password, name, city, email } = user;
 
