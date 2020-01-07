@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -48,4 +44,10 @@
 .passport-card {
   margin: 1.25rem;
   max-width: 400px;
+}
+
+.big-restaurant-image {
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
 }
