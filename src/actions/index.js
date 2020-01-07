@@ -36,7 +36,7 @@ export const login = user => dispatch => {
       console.log(res);
 
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
-      dispatch({type: LOGIN_SUCCESS, payload: user.username});
+      dispatch({type: LOGIN_SUCCESS, payload: res.data.user_id});
     })
     .catch (err => {
       console.log('err', err.response.data.message);
@@ -62,13 +62,16 @@ export const signup = user => dispatch => {
     });
 };
 
-export const fetchRestaurant = state => dispatch => {
+
+
+export const fetchRestaurant = user => dispatch => {
+
   dispatch({type: FETCH_RESTAURANT_START});
   return axiosWithAuth()
-  .get(`/api/auth/passport/${id}/user`, state)
+  .get(`/api/auth/passport/${user.id}/user`)
   .then(res => {
     console.log('get', res)
-    localStorage.setItem('token', res.data);
+    // localStorage.setItem('token', res.data);
     dispatch({type: FETCH_RESTAURANT_SUCCESS, payload: res.data});
   })
   .catch(err => {
@@ -78,18 +81,19 @@ export const fetchRestaurant = state => dispatch => {
 }
 
 
-export const addRestaurant = state => dispatch => {
+
+
+
+
+
+export const addRestaurant = restaurant => dispatch => {
   dispatch({type: ADD_RESTAURANT_START});
   return axiosWithAuth()
+  .post('/api/auth/passport', restaurant)
 
-// export const UPDATE_RESTAURANT_START = 'UPDATE_RESTAURANT_START';
-// export const UPDATE_RESTAURANT_SUCCESS = 'UPDATE_RESTAURANT_SUCCESS';
-// export const UPDATE_RESTAURANT_ERROR = 'UPDATE_RESTAURANT_ERROR';
-
-  .post('/api/auth/passport', state)
   .then(res => {
     console.log('get', res)
-    localStorage.setItem('token', res.data);
+    // localStorage.setItem('token', res.data);
     dispatch({type: ADD_RESTAURANT_SUCCESS, payload: res.data});
   })
   .catch(err => {
@@ -98,13 +102,19 @@ export const addRestaurant = state => dispatch => {
   })
 }
 
-export const updateRestaurant = state => dispatch => {
+
+
+
+
+export const updateRestaurant = restaurant => dispatch => {
+
+
   dispatch({type: UPDATE_RESTAURANT_START});
   return axiosWithAuth()
-  .put('/api/auth/passport/:id', state)
+  .put('/api/auth/passport/:id', restaurant)
   .then(res => {
     console.log('get', res)
-    localStorage.setItem('token', res.data);
+    // localStorage.setItem('token', res.data);
     dispatch({type: UPDATE_RESTAURANT_SUCCESS, payload: res.data});
   })
   .catch(err => {
