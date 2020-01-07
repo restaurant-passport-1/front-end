@@ -3,11 +3,6 @@ import React from 'react';
 
 import {axiosWithAuth} from '../utils/axioswithauth'
 
-
-
-
-
-
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
@@ -26,6 +21,7 @@ export const UPDATE_RESTAURANT_START = 'UPDATE_RESTAURANT_START';
 export const UPDATE_RESTAURANT_SUCCESS = 'UPDATE_RESTAURANT_SUCCESS';
 export const UPDATE_RESTAURANT_ERROR = 'UPDATE_RESTAURANT_ERROR';
 
+/*
 
 export const login = user => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -49,7 +45,6 @@ export const login = user => dispatch => {
     });
 };
 
-
 export const signup = user => dispatch => {
   dispatch({ type: SIGNUP_START });
   return axiosWithAuth()
@@ -68,6 +63,7 @@ export const signup = user => dispatch => {
     });
 };
 
+*/
 
 export const fetchRestaurant = state => dispatch => {
   dispatch({type: FETCH_RESTAURANT_START});
@@ -84,12 +80,6 @@ export const fetchRestaurant = state => dispatch => {
   })
 }
 
-
-
-
-
-
-
 export const addRestaurant = state => dispatch => {
   dispatch({type: ADD_RESTAURANT_START});
   return axiosWithAuth()
@@ -104,9 +94,6 @@ export const addRestaurant = state => dispatch => {
     dispatch({type: ADD_RESTAURANT_ERROR, payload: 'res.data'});
   })
 }
-
-
-
 
 export const updateRestaurant = state => dispatch => {
   dispatch({type: UPDATE_RESTAURANT_START});
