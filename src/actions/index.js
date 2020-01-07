@@ -2,9 +2,9 @@ import React from 'react';
 // import axios from 'axios';
 
 import {axiosWithAuth} from '../utils/axioswithauth'
-import jwtDecode from 'jwt-decode';
 
-import {axiosWithAuth} from '../utils/axioswithauth';
+
+
 
 
 
@@ -32,11 +32,9 @@ export const login = user => dispatch => {
   //return will return axioswithauth vs axios
   return axiosWithAuth()
 
-    .post('/api/auth/login', state)
+    
 
-    .post('https://restaurantpassport1.herokuapp.com/api/auth/login', {
-      username: 'youngw417', password: '123456'
-    })
+    .post('https://restaurantpassport1.herokuapp.com/api/auth/login', user)
 
     .then(res => {
       console.log(res);
@@ -45,9 +43,9 @@ export const login = user => dispatch => {
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
       dispatch({ type: LOGIN_SUCCESS, payload: user.username});
     })
-    .catch(err => {
-      console.log('err', err.response.data.message)
-      dispatch({type: LOGIN_ERROR, payload: err.response.data.message})
+    .catch (err => {
+      console.log('err', err.response.data.message);
+      dispatch({type: LOGIN_ERROR, payload: err.response.data.message});
     });
 };
 
@@ -55,12 +53,7 @@ export const login = user => dispatch => {
 export const signup = user => dispatch => {
   dispatch({ type: SIGNUP_START });
   return axiosWithAuth()
-
-    .post('/api/auth/register', state)
-
-    .post('https://restaurantpassport1.herokuapp.com/api/auth/register', {
-      username: 'youngw417', password: '123456', name:'young', city: 'irvine', email: 'youngw417@gmail.com'
-    })
+  .post('https://restaurantpassport1.herokuapp.com/api/auth/register', user)
 
     .then(res => {
       console.log(res);
@@ -92,9 +85,9 @@ export const fetchRestaurant = state => dispatch => {
 }
 
 
-export const ADD_RESTAURANT_START = 'ADD_RESTAURANT_START';
-export const ADD_RESTAURANT_SUCCESS = 'ADD_RESTAURANT_SUCCESS';
-export const ADD_RESTAURANT_ERROR = 'ADD_RESTAURANT_ERROR';
+
+
+
 
 
 export const addRestaurant = state => dispatch => {
@@ -113,9 +106,6 @@ export const addRestaurant = state => dispatch => {
 }
 
 
-export const UPDATE_RESTAURANT_START = 'UPDATE_RESTAURANT_START';
-export const UPDATE_RESTAURANT_SUCCESS = 'UPDATE_RESTAURANT_SUCCESS';
-export const UPDATE_RESTAURANT_ERROR = 'UPDATE_RESTAURANT_ERROR';
 
 
 export const updateRestaurant = state => dispatch => {
