@@ -1,26 +1,88 @@
 import React from 'react';
-import RestaurantCard from '../restaurantcard/restaurantcard';
-
+import { Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import PassportRestaurantCard from './PassportRestaurantCard';
 
-const AddedRestaurants = () => {
-  return (
-    <div className='restaurants_container'>
-      <div className='added_restaurants'>
-        <RestaurantCard />
-      </div>
-      {/* <div className="stamped_restaurants">
-            </div>
-            <div className="recommended_restaurants">
-            </div> */}
-    </div>
-  );
-};
+const dummyPassportRestaurantList = [
+  {
+    restName: "Suika",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }, 
 
-export default AddedRestaurants;
+  {
+    restName: "Tamari Bar",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }, 
 
-const dummyPassportRestaurantList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  {
+    restName: "Rondo",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }, 
+
+  {
+    restName: "Chung Chun Rice Dog",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }, 
+
+  {
+    restName: "Beecher's Handmade Cheese",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }, 
+
+  {
+    restName: "Skillet",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }, 
+
+  {
+    restName: "Ezell's Famous Chicken",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }, 
+
+  {
+    restName: "Din Tai Fung",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }, 
+
+  {
+    restName: "85°C Bakery",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }, 
+
+  {
+    restName: "Wataru",
+    img: "https://source.unsplash.com/random",
+    myRating: 4,
+    stamped: true,
+    id: 1
+  }];
 
 export const MyPassport = () => {
   return (
@@ -30,10 +92,14 @@ export const MyPassport = () => {
         <h2>Las Vegas Stamped Restaurants</h2>
         <div className='passport-restaurants-grid'>
           {dummyPassportRestaurantList.map((restaurant, index) => {
-            return <PassportRestaurantCard id={index} />;
+            return (
+              <Link to={"/restaurants"}>
+                <PassportRestaurantCard id={index} />
+              </Link>
+            );
           })}
         </div>
       </div>
     </>
   );
-};
+}

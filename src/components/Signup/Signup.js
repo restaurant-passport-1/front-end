@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
+
 import {Link} from 'react-router-dom';
 
 import '../../styles/signup.css';
+
+
 
 const Signup = () => {
   const [state, setState] = useState({
@@ -21,11 +24,19 @@ const Signup = () => {
   };
 
   return (
+
     <div className='container'>
       <h4 className='title2'>Ready to singup</h4>
       <form onSubmit={handleSubmit}>
         <div className='inputs'>
           <label className='bg'>Enter username</label>
+
+    <div>
+      <h1>Welcome to signup form</h1>
+      <form onSubmit={handleSubmit}>
+        <div className='inputs'>
+          <label>Enter username</label>
+
           <input
             type='text'
             name='username'
@@ -35,7 +46,11 @@ const Signup = () => {
           />
         </div>
         <div className='inputs'>
+
           <label className='bg'>Enter password</label>
+
+          <label>Enter password</label>
+
           <input
             type='password'
             name='password'
@@ -45,7 +60,9 @@ const Signup = () => {
           />
         </div>
         <div className='inputs'>
+
           <label className='bg'>Enter City</label>
+
           <input
             type='text'
             name='city'
@@ -56,7 +73,11 @@ const Signup = () => {
         </div>
 
         <div className='inputs'>
+
           <label className='bg'>Enter email</label>
+
+
+
           <input
             type='email'
             name='email'
@@ -65,10 +86,12 @@ const Signup = () => {
             placeholder='sunil@gmail.com'
           />
         </div>
+
         <button className='btn'>Sign up</button>
         <Link to='/login'>
           <small className='small'>Need to Sign in </small>
         </Link>
+
       </form>
     </div>
   );

@@ -1,10 +1,14 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+
+import 'materialize-css/dist/css/materialize.min.css';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+
 import store from './store';
 import {Provider} from 'react-redux';
 import './App.css';
 import Dashboard from './components/dashboard/dashboard';
-import {MyPassport} from './components/addedrestaurants/addedrestaurants';
+
+
 import Signup from './components/Signup/Signup';
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
