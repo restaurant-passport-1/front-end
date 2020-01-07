@@ -38,8 +38,8 @@ export const Login = () => {
             type='password'
             name='password'
             onChange={handleChange}
-            value={state.city}
-            placeholder='Kathmandu'
+            value={state.password}
+            placeholder='********'
           />
           <button className='btn'>Login</button>
           <Link to='/signup'>

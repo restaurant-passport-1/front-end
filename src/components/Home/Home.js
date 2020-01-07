@@ -6,10 +6,10 @@ import '../../styles/home.css';
 const Home = () => {
   return (
     <div className='home'>
-      {/* <h1>Welcome to the Restaurant Home Page</h1>
+      <h4 className='title'>Welcome to the Restaurant Home Page</h4>
       <Link to='/restaurantlist'>
-        <button>Show Restaurant List</button>
-      </Link> */}
+        <button className='btn'>Show Restaurant List</button>
+      </Link>
     </div>
   );
 };

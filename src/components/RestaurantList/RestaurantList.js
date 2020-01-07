@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 import Restaurant from '../Restaurant/Restaurant';
+import '../../styles/restaurantlist.css';
 
 const RestaurantList = props => {
   const [state, setState] = useState([]);
@@ -18,17 +19,19 @@ const RestaurantList = props => {
   }, []);
 
   return (
-    <div>
-      <h1>Welcome Everyone</h1>
-      {state.map(list => {
-        return (
-          <Link to={`/restaurantlist/${list.id}`}>
-            <div>
-              <Restaurant list={list} key={list.id} />;
-            </div>
-          </Link>
-        );
-      })}
+    <div className='container'>
+      <h4 className='res'>Restaurant List</h4>
+      <div className='list'>
+        {state.map(list => {
+          return (
+            <Link to={`/restaurantlist/${list.id}`}>
+              <div>
+                <Restaurant list={list} key={list.id} />
+              </div>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };
