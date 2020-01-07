@@ -89,7 +89,7 @@ export const MyPassport = () => {
   const [passportRestaurantList, setPassportRestaurantList] = useState(dummyPassportRestaurantList);
 
   const removeFromPassport = (id) => {
-    console.log('got ' + id + 'from child');
+    setPassportRestaurantList(passportRestaurantList.filter(restaurant => restaurant.id !== id));
   };
 
   return (
@@ -97,12 +97,13 @@ export const MyPassport = () => {
       <h1>My Passport</h1>
       <h2>Las Vegas Stamped Restaurants</h2>
       <div className='passport-restaurants-grid'>
-        {passportRestaurantList.map((restaurant, index) => {
+        {passportRestaurantList.map(restaurant => {
           return (
-            <Link to={"/restaurants"}>
+            <Link to={"/mypassport"}>
               <PassportRestaurantCard 
-                id={index} 
+                
                 restName={restaurant.restName} 
+                restaurant={restaurant}
                 removeFromPassport={removeFromPassport}
               />
             </Link>

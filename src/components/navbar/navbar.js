@@ -12,14 +12,14 @@ export default function Navbar() {
     <nav>
       <div className="nav-wrapper nav_bar">
         <Link to={"/"} className="brand-logo">Restaurant Passport</Link>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><Link to={"/mypassport"}>My Passport</Link></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Profile</a></li>
           <li><SignUpLink /></li>
           <li><SignInLink /></li>
           <li><HeaderWithLogOut /></li>
-          <li><a href="#"><i class="material-icons">search</i></a></li>
+          <li><a href="#"><i className="material-icons">search</i></a></li>
         </ul>
       </div>
     </nav>
