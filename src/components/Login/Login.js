@@ -1,4 +1,7 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+
+import '../../styles/signup.css';
 
 export const Login = () => {
   const [state, setState] = useState({
@@ -11,31 +14,41 @@ export const Login = () => {
     console.log([e.target.name], e.target.value);
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
+
   return (
     <div className='container'>
-      <h1>Welcome to Login form</h1>
-      <form>
-        <div className='inputs'>
-          <label>Username</label>
-          <input
-            type='text'
-            name='username'
-            onChange={handleChange}
-            value={state.name}
-            placeholder='Sunil Karki'
-          />
-        </div>
-        <div className='inputs'>
-          <label>Password</label>
-          <input
-            type='password'
-            name='password'
-            onChange={handleChange}
-            value={state.city}
-            placeholder='Kathmandu'
-          />
-        </div>
-      </form>
+      <h4 className='title1'>Welcome to Login form</h4>
+      <div className='form-con'>
+        <form onSubmit={handleSubmit}>
+          <div className='inputs'>
+            <label className='bg'>Username</label>
+            <input
+              type='text'
+              name='username'
+              onChange={handleChange}
+              value={state.name}
+              placeholder='Sunil Karki'
+            />
+          </div>
+          <div className='inputs'>
+            <label className='bg'>Password</label>
+            <input
+              type='password'
+              name='password'
+              onChange={handleChange}
+              value={state.password}
+              placeholder='********'
+            />
+            <button className='btn'>Login</button>
+            <Link to='/signup'>
+              <small className='text'>Need to signup</small>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,13 @@
+.restaurant {
+  padding: 30px;
+  width: 200px;
+  box-shadow: 0 5px 10px #ccc;
+  background: white;
+
+  margin-top: 30px;
+}
+
+.btn-sec {
+  background: rgb(245, 104, 104);
+  padding: 5px 10px;
+}
