@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import PassportRestaurantCard from './PassportRestaurantCard';
+import axiosWithAuth from '../../utils/axioswithauth';
 
 const dummyPassportRestaurantList = [
   {
@@ -91,6 +92,17 @@ export const MyPassport = () => {
   const removeFromPassport = (id) => {
     setPassportRestaurantList(passportRestaurantList.filter(restaurant => restaurant.id !== id));
   };
+
+  useEffect(() => {
+    // * * * NEEDS CORRECT LINK
+    axiosWithAuth().get('https://restaurantpassport1.herokuapp.com/api/auth/passport/:id/user')
+    .then(response => {
+      console.dir(response.data);
+    })
+    .catch(error => {
+      console.log('Error', error);
+    })
+  }, [])
 
   return (
     <div className='container'>
