@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 
-import '../../styles/signup.css';
-
-const Signup = () => {
+const UpdateRestaurant = () => {
   const [state, setState] = useState({
-    username: '',
-    password: '',
+    restaurantName: '',
+    streetAddress: '',
     city: '',
+    zipcode: '',
+    phoneNumber: '',
+    myRating: '',
+    notes: '',
     email: ''
   });
 
@@ -21,30 +23,30 @@ const Signup = () => {
 
   return (
     <div className='container'>
-      <h4 className='title'>Ready to singup</h4>
+      <h1>Welcome to updateform</h1>
       <form onSubmit={handleSubmit}>
         <div className='inputs'>
-          <label className='bg'>Enter username</label>
+          <label>Enter restaurantName</label>
           <input
             type='text'
-            name='username'
+            name='restaurantName'
             onChange={handleChange}
-            value={state.username}
+            value={state.restaurantName}
             placeholder='Sunil Karki'
           />
         </div>
         <div className='inputs'>
-          <label className='bg'>Enter password</label>
+          <label>Enter streetAddress</label>
           <input
-            type='password'
-            name='password'
+            type='streetAddress'
+            name='streetAddress'
             onChange={handleChange}
-            value={state.password}
-            placeholder='********'
+            value={state.streetAddress}
+            placeholder='123 garden ave s'
           />
         </div>
         <div className='inputs'>
-          <label className='bg'>Enter City</label>
+          <label>Enter City</label>
           <input
             type='text'
             name='city'
@@ -55,19 +57,30 @@ const Signup = () => {
         </div>
 
         <div className='inputs'>
-          <label className='bg'>Enter email</label>
+          <label>Enter Notes</label>
           <input
-            type='email'
-            name='email'
+            type='notes'
+            name='notes'
             onChange={handleChange}
             value={state.email}
             placeholder='sunil@gmail.com'
           />
         </div>
-        <button className='btn'>Sign up</button>
+
+        <label>Rate it</label>
+        <div className='drop'>
+          <select name='stars'>
+            <option value='1'>1</option>
+            <option value={2}>"2"</option>
+            <option value={3}>"3"</option>
+            <option value={4}>"4"</option>
+            <option value={5}>"5"</option>
+          </select>
+        </div>
+        <button>Sign up</button>
       </form>
     </div>
   );
 };
 
-export default Signup;
+export default UpdateRestaurant;
