@@ -72,7 +72,7 @@ export const signup = user => dispatch => {
 export const fetchRestaurant = state => dispatch => {
   dispatch({type: FETCH_RESTAURANT_START});
   return axiosWithAuth()
-  .get('/api/restaurants', state)
+  .get(`/api/auth/passport/${id}/user`, state)
   .then(res => {
     console.log('get', res)
     localStorage.setItem('token', res.data);
@@ -93,7 +93,7 @@ export const fetchRestaurant = state => dispatch => {
 export const addRestaurant = state => dispatch => {
   dispatch({type: ADD_RESTAURANT_START});
   return axiosWithAuth()
-  .post('/api/restaurant', state)
+  .post('/api/auth/passport', state)
   .then(res => {
     console.log('get', res)
     localStorage.setItem('token', res.data);
@@ -111,7 +111,7 @@ export const addRestaurant = state => dispatch => {
 export const updateRestaurant = state => dispatch => {
   dispatch({type: UPDATE_RESTAURANT_START});
   return axiosWithAuth()
-  .put('/api/restaurant/:id', state)
+  .put('/api/auth/passport/:id', state)
   .then(res => {
     console.log('get', res)
     localStorage.setItem('token', res.data);
