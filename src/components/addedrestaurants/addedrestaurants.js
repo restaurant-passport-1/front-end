@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import PassportRestaurantCard from './PassportRestaurantCard';
@@ -17,7 +17,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 2
   }, 
 
   {
@@ -25,7 +25,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 3
   }, 
 
   {
@@ -33,7 +33,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 4
   }, 
 
   {
@@ -41,7 +41,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 5
   }, 
 
   {
@@ -49,7 +49,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 6
   }, 
 
   {
@@ -57,7 +57,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 7
   }, 
 
   {
@@ -65,7 +65,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 8
   }, 
 
   {
@@ -73,7 +73,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 9
   }, 
 
   {
@@ -81,26 +81,35 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
-  }];
+    id: 10
+  }
+];
 
 export const MyPassport = () => {
+  const [passportRestaurantList, setPassportRestaurantList] = useState(dummyPassportRestaurantList);
+
+  const removeFromPassport = (id) => {
+    console.log('got ' + id + 'from child');
+  };
+
   return (
-    <>
-      <div className='container'>
-        <h1>My Passport</h1>
-        <h2>Las Vegas Stamped Restaurants</h2>
-        <div className='passport-restaurants-grid'>
-          {dummyPassportRestaurantList.map((restaurant, index) => {
-            return (
-              <Link to={"/restaurants"}>
-                <PassportRestaurantCard id={index} />
-              </Link>
-            );
-          })}
-        </div>
+    <div className='container'>
+      <h1>My Passport</h1>
+      <h2>Las Vegas Stamped Restaurants</h2>
+      <div className='passport-restaurants-grid'>
+        {passportRestaurantList.map((restaurant, index) => {
+          return (
+            <Link to={"/restaurants"}>
+              <PassportRestaurantCard 
+                id={index} 
+                restName={restaurant.restName} 
+                removeFromPassport={removeFromPassport}
+              />
+            </Link>
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 }
 
