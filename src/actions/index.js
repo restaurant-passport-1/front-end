@@ -47,12 +47,12 @@ export const login = user => dispatch => {
 export const signup = user => dispatch => {
   dispatch({type: SIGNUP_START});
   return axiosWithAuth()
-  .post('https://restaurantpassport1.herokuapp.com/api/auth/register', user)
+  .post('/api/auth/register', user)
 
     .then(res => {
-      console.log(res);
+      console.log('signup', res);
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
-      dispatch({type: SIGNUP_SUCCESS, payload: user.username});
+      dispatch({type: SIGNUP_SUCCESS, payload: res.data});
       // localStorage.setItem('token', res.data); //whatever token obect key is on object
       // dispatch({ type: SIGNUP_SUCCESS, payload: res.data }); //whatever the token object key is
     })
