@@ -10,7 +10,7 @@ const Home = () => {
         <h3 className='text'>Restaurant Home Page</h3>
       </div>
       <Link to='/restaurantlist'>
-        <button className='btn'>Show Restaurant List</button>
+        <button className='btnn'>Show Restaurant List</button>
       </Link>
     </div>
   );

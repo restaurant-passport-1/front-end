@@ -16,10 +16,14 @@
   transform: translate(-50%, -10%);
 }
 
-.btn {
+.btnn {
   margin-top: 5%;
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -40%);
+  padding: 10px;
+  border-radius: 5px;
+  background: dodgerblue;
+  color: white;
 }

@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import './App.css';
 import Dashboard from './components/dashboard/dashboard';
 import {MyPassport} from './components/addedrestaurants/addedrestaurants';
-import Signup from './components/Signup/Singup';
+import Signup from './components/Signup/Signup';
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
 import Home from './components/Home/Home';
@@ -23,6 +23,7 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/update' component={UpdateRestaurant} />
 
           <Route exact path='/restaurantlist' component={RestaurantList} />
           <Route exact path='/restaurantlist/:id' component={RestaurantDetail} />

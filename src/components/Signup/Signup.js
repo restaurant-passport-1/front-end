@@ -22,7 +22,7 @@ const Signup = () => {
 
   return (
     <div className='container'>
-      <h4 className='title'>Ready to singup</h4>
+      <h4 className='title2'>Ready to singup</h4>
       <form onSubmit={handleSubmit}>
         <div className='inputs'>
           <label className='bg'>Enter username</label>
@@ -67,7 +67,7 @@ const Signup = () => {
         </div>
         <button className='btn'>Sign up</button>
         <Link to='/login'>
-          <small className='text'>Need to Sign in </small>
+          <small className='small'>Need to Sign in </small>
         </Link>
       </form>
     </div>
