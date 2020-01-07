@@ -1,4 +1,5 @@
 import React from 'react';
+import 'materialize-css/dist/css/materialize.min.css';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import store from './store';
 import { Provider } from 'react-redux';
@@ -11,6 +12,8 @@ import Home from './components/Home/Home';
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import RestaurantDetail from './components/Restaurant/Restaurant';
 import RestaurantView from './components/RestaurantView'
+
+import MyPassport from './components/addedrestaurants/addedrestaurants';
 
 function App() {
   return (

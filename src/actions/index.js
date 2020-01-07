@@ -2,7 +2,6 @@ import React from 'react';
 // import axios from 'axios';
 
 import {axiosWithAuth} from '../utils/axioswithauth'
-import jwtDecode from 'jwt-decode';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -29,11 +28,9 @@ export const login = user => dispatch => {
   //return will return axioswithauth vs axios
   return axiosWithAuth()
 
-    .post('/api/auth/login', state)
+    
 
-    .post('https://restaurantpassport1.herokuapp.com/api/auth/login', {
-      username: 'youngw417', password: '123456'
-    })
+    .post('https://restaurantpassport1.herokuapp.com/api/auth/login', user)
 
     .then(res => {
       console.log(res);
@@ -42,21 +39,16 @@ export const login = user => dispatch => {
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
       dispatch({ type: LOGIN_SUCCESS, payload: user.username});
     })
-    .catch(err => {
-      console.log('err', err.response.data.message)
-      dispatch({type: LOGIN_ERROR, payload: err.response.data.message})
+    .catch (err => {
+      console.log('err', err.response.data.message);
+      dispatch({type: LOGIN_ERROR, payload: err.response.data.message});
     });
 };
 
 export const signup = user => dispatch => {
   dispatch({ type: SIGNUP_START });
   return axiosWithAuth()
-
-    .post('/api/auth/register', state)
-
-    .post('https://restaurantpassport1.herokuapp.com/api/auth/register', {
-      username: 'youngw417', password: '123456', name:'young', city: 'irvine', email: 'youngw417@gmail.com'
-    })
+  .post('https://restaurantpassport1.herokuapp.com/api/auth/register', user)
 
     .then(res => {
       console.log(res);
@@ -76,7 +68,7 @@ export const signup = user => dispatch => {
 export const fetchRestaurant = state => dispatch => {
   dispatch({type: FETCH_RESTAURANT_START});
   return axiosWithAuth()
-  .get('/api/restaurants', state)
+  .get(`/api/auth/passport/${id}/user`, state)
   .then(res => {
     console.log('get', res)
     localStorage.setItem('token', res.data);
@@ -91,7 +83,7 @@ export const fetchRestaurant = state => dispatch => {
 export const addRestaurant = state => dispatch => {
   dispatch({type: ADD_RESTAURANT_START});
   return axiosWithAuth()
-  .post('/api/restaurant', state)
+  .post('/api/auth/passport', state)
   .then(res => {
     console.log('get', res)
     localStorage.setItem('token', res.data);
@@ -106,7 +98,7 @@ export const addRestaurant = state => dispatch => {
 export const updateRestaurant = state => dispatch => {
   dispatch({type: UPDATE_RESTAURANT_START});
   return axiosWithAuth()
-  .put('/api/restaurant/:id', state)
+  .put('/api/auth/passport/:id', state)
   .then(res => {
     console.log('get', res)
     localStorage.setItem('token', res.data);
