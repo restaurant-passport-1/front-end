@@ -17,7 +17,7 @@ import {
   } from '../actions/index'
   
   const initialState = {
-    user: [],
+    user: {},
     username: '',
     error: '',
     isFetching: false,
@@ -36,7 +36,8 @@ import {
         return {
           ...state,
           isFetching: false,
-          username: action.payload
+          user: {...state.user, 
+            id: action.payload}
         };
       case LOGIN_ERROR:
         return {
@@ -55,7 +56,13 @@ import {
       case SIGNUP_SUCCESS:
         return {
           ...state,
-          user: action.payload,
+          user: {
+            id: action.payload.id,
+            username: action.payload.username,
+            name: action.payload.name,
+            city: action.payload.city,
+            email: action.payload.email
+          },
           isFetching: false
        
         };

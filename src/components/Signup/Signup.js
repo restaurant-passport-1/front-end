@@ -13,13 +13,13 @@ const Signup = (props) => {
   const initialState = {
     username: "",
     password: "",
-
+    name: "",
     city: "",
     email: ""
   };
 
   const [user, setUser] = useState(initialState);
-  const { username, password, city, email } = user;
+  const { username, password, name, city, email } = user;
 
   
 
@@ -51,7 +51,8 @@ const Signup = (props) => {
             name='username'
             onChange={handleChange}
             value={username}
-            placeholder='Sunil Karki'
+            placeholder='Username'
+            required
           />
         </div>
         <div className='inputs'>
@@ -66,6 +67,20 @@ const Signup = (props) => {
             onChange={handleChange}
             value={password}
             placeholder='********'
+            required
+          />
+        </div>
+        <div className='inputs'>
+
+          <label className='bg'>Name</label>
+
+          <input
+            type='text'
+            name='name'
+            onChange={handleChange}
+            value={name}
+            placeholder='Name'
+            required
           />
         </div>
         <div className='inputs'>
@@ -77,7 +92,8 @@ const Signup = (props) => {
             name='city'
             onChange={handleChange}
             value={city}
-            placeholder='Kathmandu'
+            placeholder='City'
+            required
           />
         </div>
 
@@ -92,7 +108,8 @@ const Signup = (props) => {
             name='email'
             onChange={handleChange}
             value={email}
-            placeholder='sunil@gmail.com'
+            placeholder='Email'
+            required
           />
         </div>
 
