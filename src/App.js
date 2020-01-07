@@ -17,10 +17,10 @@ import RestaurantList from './components/RestaurantList/RestaurantList';
 import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail';
 import UpdateRestaurant from './components/UpdateRestaurant/UpdateRestaurant';
 import Login from './components/Login/Login';
+import MyPassport from './components/addedrestaurants/addedrestaurants';
 
 function App() {
 
-  
   return (
 
     <Provider store={store}>
@@ -35,7 +35,7 @@ function App() {
 
           <Route exact path='/restaurantlist' component={RestaurantList} />
           <Route exact path='/restaurantlist/:id' component={RestaurantDetail} />
-          {/* <Route exact path='/mypassport' component={MyPassport} /> */}
+          <Route path='/mypassport' component={MyPassport} />
           <Route path='/dashboard' component={Dashboard} />
           <Route path='/dashboard' component={Footer} />
         </Router>

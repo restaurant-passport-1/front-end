@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import PassportRestaurantCard from './PassportRestaurantCard';
+import axiosWithAuth from '../../utils/axioswithauth';
 
 const dummyPassportRestaurantList = [
   {
@@ -17,7 +18,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 2
   }, 
 
   {
@@ -25,7 +26,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 3
   }, 
 
   {
@@ -33,7 +34,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 4
   }, 
 
   {
@@ -41,7 +42,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 5
   }, 
 
   {
@@ -49,7 +50,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 6
   }, 
 
   {
@@ -57,7 +58,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 7
   }, 
 
   {
@@ -65,7 +66,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 8
   }, 
 
   {
@@ -73,7 +74,7 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
+    id: 9
   }, 
 
   {
@@ -81,26 +82,47 @@ const dummyPassportRestaurantList = [
     img: "https://source.unsplash.com/random",
     myRating: 4,
     stamped: true,
-    id: 1
-  }];
+    id: 10
+  }
+];
 
 export const MyPassport = () => {
+  const [passportRestaurantList, setPassportRestaurantList] = useState(dummyPassportRestaurantList);
+
+  const removeFromPassport = (id) => {
+    setPassportRestaurantList(passportRestaurantList.filter(restaurant => restaurant.id !== id));
+  };
+
+  useEffect(() => {
+    // * * * NEEDS CORRECT LINK
+    axiosWithAuth().get('https://restaurantpassport1.herokuapp.com/api/auth/passport/:id/user')
+    .then(response => {
+      console.dir(response.data);
+    })
+    .catch(error => {
+      console.log('Error', error);
+    })
+  }, [])
+
   return (
-    <>
-      <div className='container'>
-        <h1>My Passport</h1>
-        <h2>Las Vegas Stamped Restaurants</h2>
-        <div className='passport-restaurants-grid'>
-          {dummyPassportRestaurantList.map((restaurant, index) => {
-            return (
-              <Link to={"/restaurants"}>
-                <PassportRestaurantCard id={index} />
-              </Link>
-            );
-          })}
-        </div>
+    <div className='container'>
+      <h1>My Passport</h1>
+      <h2>Las Vegas Stamped Restaurants</h2>
+      <div className='passport-restaurants-grid'>
+        {passportRestaurantList.map(restaurant => {
+          return (
+            <Link to={"/mypassport"}>
+              <PassportRestaurantCard 
+                
+                restName={restaurant.restName} 
+                restaurant={restaurant}
+                removeFromPassport={removeFromPassport}
+              />
+            </Link>
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 }
 

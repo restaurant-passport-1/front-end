@@ -35,6 +35,10 @@
   }
 }
 
+.nav-wrapper {
+  padding: 0 15px;
+}
+
 .passport-restaurants-grid {
   display: flex;
   flex-wrap: wrap;
