@@ -84,13 +84,13 @@ const dummyPassportRestaurantList = [
     id: 1
   }];
 
-export default function MyPassport() {
+export const MyPassport = () => {
   return (
     <>
-      <div className="container">
+      <div className='container'>
         <h1>My Passport</h1>
         <h2>Las Vegas Stamped Restaurants</h2>
-        <div className="passport-restaurants-grid">
+        <div className='passport-restaurants-grid'>
           {dummyPassportRestaurantList.map((restaurant, index) => {
             return (
               <Link to={"/restaurants"}>

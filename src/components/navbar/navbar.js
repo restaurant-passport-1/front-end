@@ -1,3 +1,4 @@
+
 // import React from 'react';
 // import styles from '../../styles/styles.css'
 // import HeaderWithLogOut from './logout';
@@ -45,10 +46,8 @@
 
 import React from 'react';
 import { Link } from "react-router-dom";
-import { useDarkMode } from '../dark-mode-hook/useDarkMode'
 import 'materialize-css/dist/css/materialize.min.css';
 import styles from '../../styles/styles.css'
-import HeaderWithLogOut from './logout';
 
 export default function Navbar() {
 
@@ -61,8 +60,9 @@ export default function Navbar() {
           <li><a href="#">About</a></li>
           <li><a href="#">Profile</a></li>
           <li><a href="#"><i class="material-icons">search</i></a></li>
+
         </ul>
       </div>
     </nav>
   );
-}
+};

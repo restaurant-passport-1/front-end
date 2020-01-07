@@ -3,14 +3,14 @@ import React, {useState, useEffect} from 'react';
 const RestaurantDetail = props => {
   const [state, setState] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(`https://prisoner-skills-bw.herokuapp.com/api/users/${id}`)
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch();
-  }, []);
+  //   useEffect(() => {
+  //     axios
+  //       .get(`https://prisoner-skills-bw.herokuapp.com/api/users/${id}`)
+  //       .then(response => {
+  //         console.log(response.data);
+  //       })
+  //       .catch();
+  //   }, []);
 
   return (
     <div>

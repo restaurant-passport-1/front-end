@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Link} from "react-router-dom";
 
+import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 
-import axios from "axios";
+import '../../styles/home.css';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to the Restaurant Home Page</h1>
-      <Link to="/restaurantlist">
-        <button>Show Restaurant List</button>
+    <div className='home'>
+      <div className='title'>
+        <h3 className='text'>Restaurant Home Page</h3>
+      </div>
+      <Link to='/restaurantlist'>
+        <button className='btnn'>Show Restaurant List</button>
       </Link>
-      
     </div>
   );
 };

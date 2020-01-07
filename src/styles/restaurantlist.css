@@ -1,0 +1,13 @@
+.title {
+  margin: 0;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.res {
+  text-shadow: 1px 1px #000;
+}
