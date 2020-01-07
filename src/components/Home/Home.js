@@ -6,7 +6,9 @@ import '../../styles/home.css';
 const Home = () => {
   return (
     <div className='home'>
-      <h4 className='title'>Welcome to the Restaurant Home Page</h4>
+      <div className='title'>
+        <h3 className='text'>Restaurant Home Page</h3>
+      </div>
       <Link to='/restaurantlist'>
         <button className='btn'>Show Restaurant List</button>
       </Link>
