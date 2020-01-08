@@ -40,7 +40,7 @@ export const Login = (props) => {
 
   return (
     <div className='container'>
-      <h4 className='title1'>Welcome to Login form</h4>
+      <h4 className='sign-title'>Log In</h4>
       <div className='form-con'>
         <form onSubmit={handleSubmit}>
           <div className='inputs'>

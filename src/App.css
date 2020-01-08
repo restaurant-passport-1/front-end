@@ -3,6 +3,9 @@
 
 /* #8c2c2c stiletto red */
 /* #f0c352 ronchi yellow */
+/* #ababab silver chalice */
+/* #fff9e2 gin fizz */
+/* #fcfcfc alabaster */
 
 .nav-wrapper {
   padding: 0 15px;
@@ -11,6 +14,31 @@
 
 .brand-logo {
   color: #f0c352 !important;
+}
+
+.sign-title {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+form {
+  border-radius: 15px;
+}
+
+/* override materialize styles for input */
+input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default) {
+  background: #fcfcfc;
+  border: 1px solid #ababab;
+  border-radius: 5px;
+  padding: 0 8px;
+}
+
+.btn {
+  background-color: #8c2c2c;
+}
+
+.btn:hover {
+  background-color: #a05252; /* lighter shade of stiletto red */
 }
 
 .passport-restaurants-grid {
