@@ -4,6 +4,7 @@
 /* #8c2c2c stiletto red */
 /* #f0c352 ronchi yellow */
 /* #ababab silver chalice */
+/* #fff9e2 gin fizz */
 /* #fcfcfc alabaster */
 
 .nav-wrapper {
@@ -30,6 +31,14 @@ input[type=text]:not(.browser-default), input[type=password]:not(.browser-defaul
   border: 1px solid #ababab;
   border-radius: 5px;
   padding: 0 8px;
+}
+
+.btn {
+  background-color: #8c2c2c;
+}
+
+.btn:hover {
+  background-color: #a05252; /* lighter shade of stiletto red */
 }
 
 .passport-restaurants-grid {
