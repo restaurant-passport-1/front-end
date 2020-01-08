@@ -109,7 +109,7 @@ export const MyPassport = ({fetchRestaurant, id, restaurants}) => {
     // .catch(error => {
     //   console.log('Error', error);
     // })
-  }, [])
+  }, [id])
 
   return (
     <div className='container'>

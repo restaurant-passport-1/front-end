@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import {Link} from 'react-router-dom';
-import M from 'materialize-css/dist/js/materialize.min.js';
+
 import '../../styles/signup.css';
 import { signup } from "../../actions";
 import { connect } from "react-redux";
@@ -32,7 +32,7 @@ const Signup = (props) => {
     e.preventDefault();
     signup(user);
     setUser(initialState);
-    M.toast({html: `Signup successul by ${username}`})
+  
     props.history.push('/');
   };
 

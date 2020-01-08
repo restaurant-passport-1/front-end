@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import { login } from '../../actions';
 import { connect } from 'react-redux';
-import M from 'materialize-css/dist/js/materialize.min.js';
+
 
 import '../../styles/signup.css';
 
@@ -28,7 +28,6 @@ export const Login = (props) => {
         password: ''
     });
 
-    M.toast({html: `Login Successfull by ${username}`})
 
     props.history.push('/');
 
