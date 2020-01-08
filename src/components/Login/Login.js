@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import { login } from '../../actions';
 import { connect } from 'react-redux';
-
+import Preloader from '../../utils/Preloader';
 
 import '../../styles/signup.css';
 
@@ -32,6 +32,11 @@ export const Login = (props) => {
     props.history.push('/');
 
   };
+
+  if (props.isFetching) {
+    return <Preloader />
+  }
+
 
   return (
     <div className='container'>
@@ -70,5 +75,11 @@ export const Login = (props) => {
   );
 };
 
+const mapStateToProps = state => {
 
-export default connect(null, {login})(Login);
+  return {
+    isFetching: state.isFetching
+  
+  }
+}
+export default connect(mapStateToProps, {login})(Login);

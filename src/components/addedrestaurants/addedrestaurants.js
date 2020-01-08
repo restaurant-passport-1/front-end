@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import PassportRestaurantCard from './PassportRestaurantCard';
-
+import Preloader from '../../utils/Preloader';
 import { fetchRestaurant } from '../../actions';
 import { connect } from  'react-redux';
 
@@ -88,7 +88,7 @@ import { connect } from  'react-redux';
 //   }
 // ];
 
-export const MyPassport = ({fetchRestaurant, id, restaurants}) => {
+export const MyPassport = ({fetchRestaurant, id, restaurants, isFetching }) => {
   // const [passportRestaurantList, setPassportRestaurantList] = useState([]);
 
   // const removeFromPassport = (id) => {
@@ -110,6 +110,11 @@ export const MyPassport = ({fetchRestaurant, id, restaurants}) => {
     //   console.log('Error', error);
     // })
   }, [id])
+
+  if (isFetching || restaurants === null) {
+    return <Preloader />
+  }
+
 
   return (
     <div className='container'>
@@ -133,7 +138,8 @@ export const MyPassport = ({fetchRestaurant, id, restaurants}) => {
 const mapStateToProps = state => {
   return {
     id: state.user.id,
-    restaurants: state.restaurants
+    restaurants: state.restaurants,
+    isFetching: state.isFetching
   }
 }
 export default connect( mapStateToProps, { fetchRestaurant})(MyPassport);

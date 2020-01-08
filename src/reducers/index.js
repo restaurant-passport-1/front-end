@@ -8,6 +8,9 @@ import {
     FETCH_RESTAURANT_START,
     FETCH_RESTAURANT_SUCCESS,
     FETCH_RESTAURANT_ERROR, 
+    FETCH_ALL_START,
+    FETCH_ALL_SUCCESS,
+    FETCH_ALL_ERROR, 
     ADD_RESTAURANT_START,
     ADD_RESTAURANT_SUCCESS,
     ADD_RESTAURANT_ERROR,
@@ -25,7 +28,7 @@ import {
     username: '',
     error: '',
     isFetching: false,
-    restaurants: []
+    restaurants: null
 
   };
   
@@ -98,6 +101,25 @@ import {
                 isFetching: false,
                 error: action.payload
               }
+              case FETCH_ALL_START:
+                return {
+                  ...state,
+                  isFetching: true
+                }
+          
+                case FETCH_ALL_SUCCESS:
+                  return {
+                    ...state,
+                    restaurants: action.payload,
+                    isFetching: false
+                  }
+            
+                  case FETCH_ALL_ERROR:
+                    return {
+                      ...state,
+                      isFetching: false,
+                      error: action.payload
+                    }
               case ADD_RESTAURANT_START:
                 return {
                   ...state,
