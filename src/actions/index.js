@@ -16,6 +16,10 @@ export const FETCH_RESTAURANT_START = 'FETCH_RESTAURANT_START';
 export const FETCH_RESTAURANT_SUCCESS = 'FETCH_RESTAURANT_SUCCESS';
 export const FETCH_RESTAURANT_ERROR = 'FETCH_RESTAURANT_ERROR';
 
+export const FETCH_ALL_START = 'FETCH_ALL_START';
+export const FETCH_ALL_SUCCESS = 'FETCH_ALL_SUCCESS';
+export const FETCH_ALL_ERROR = 'FETCH_ALL_ERROR';
+
 export const ADD_RESTAURANT_START = 'ADD_RESTAURANT_START';
 export const ADD_RESTAURANT_SUCCESS = 'ADD_RESTAURANT_SUCCESS';
 export const ADD_RESTAURANT_ERROR = 'ADD_RESTAURANT_ERROR';
@@ -89,7 +93,22 @@ export const fetchRestaurant = id => dispatch => {
 }
 
 
+export const fetchAllRestaurant = (id )=> dispatch => {
 
+  dispatch({type: FETCH_ALL_START});
+  console.log('myid', id);
+  return axiosWithAuth()
+  .get(`/api/auth/restaurants/search?id=${id}`)
+  .then(res => {
+    console.log('all', res)
+    // localStorage.setItem('token', res.data);
+    dispatch({type: FETCH_ALL_SUCCESS, payload: res.data.businesses});
+  })
+  .catch(err => {
+   
+    dispatch({type: FETCH_ALL_ERROR, payload: err.response.data.message});
+  })
+}
 
 
 
