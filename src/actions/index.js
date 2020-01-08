@@ -24,6 +24,10 @@ export const UPDATE_RESTAURANT_START = 'UPDATE_RESTAURANT_START';
 export const UPDATE_RESTAURANT_SUCCESS = 'UPDATE_RESTAURANT_SUCCESS';
 export const UPDATE_RESTAURANT_ERROR = 'UPDATE_RESTAURANT_ERROR';
 
+export const DELETE_RESTAURANT_START = 'DELETE_RESTAURANT_START';
+export const DELETE_RESTAURANT_SUCCESS = 'DELETE_RESTAURANT_SUCCESS';
+export const DELETE_RESTAURANT_ERROR = 'DELETE_RESTAURANT_ERROR';
+
 
 
 
@@ -96,7 +100,7 @@ export const addRestaurant = restaurant => dispatch => {
   .post('/api/auth/passport', restaurant)
 
   .then(res => {
-    console.log('get', res)
+    console.log('add', res)
     // localStorage.setItem('token', res.data);
     dispatch({type: ADD_RESTAURANT_SUCCESS, payload: res.data});
   })
@@ -123,7 +127,24 @@ export const updateRestaurant = restaurant => dispatch => {
   })
   .catch(err => {
     console.log('err', err.response);
-    dispatch({type: UPDATE_RESTAURANT_ERROR, payload: 'res.data'});
+    dispatch({type: UPDATE_RESTAURANT_ERROR, payload: err.response.data.message});
   })
 }
 
+export const deleteRestaurant = restaurant => dispatch => {
+
+
+  dispatch({type: DELETE_RESTAURANT_START});
+  return axiosWithAuth()
+  .delete(`/api/auth/passport/${restaurant.id}`)
+  .then(res => {
+    console.log('get', res)
+    // localStorage.setItem('token', res.data);
+    dispatch({type: DELETE_RESTAURANT_SUCCESS, payload:restaurant.id});
+    M.toast({html: `Restaurant in Passport deleted`})
+  })
+  .catch(err => {
+    console.log('err', err.response);
+    dispatch({type: DELETE_RESTAURANT_ERROR, payload: err.response.data.message});
+  })
+}

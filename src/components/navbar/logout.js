@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const HeaderWithLogOut = () => {
 	return (
-		<Link className='log-out' to='/' onClick={() => localStorage.removeItem('token')}>
+		<Link className='log-out' to='/login' onClick={() => localStorage.removeItem('token')}>
 			Sign Out
 		</Link>
 	);

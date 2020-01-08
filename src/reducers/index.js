@@ -13,7 +13,11 @@ import {
     ADD_RESTAURANT_ERROR,
     UPDATE_RESTAURANT_START,
     UPDATE_RESTAURANT_SUCCESS,
-    UPDATE_RESTAURANT_ERROR
+    UPDATE_RESTAURANT_ERROR,
+    DELETE_RESTAURANT_START,
+    DELETE_RESTAURANT_SUCCESS,
+    DELETE_RESTAURANT_ERROR
+
   } from '../actions/index'
   
   const initialState = {
@@ -121,6 +125,23 @@ import {
                       ...state.restaurants, isEditing:!action.isEditing}: state.restaurants)
                   }
                   case UPDATE_RESTAURANT_ERROR:
+                    return {
+                      ...state,
+                      isFetching: false,
+                      error: action.payload
+                    }
+
+                  case DELETE_RESTAURANT_START:
+                  return {
+                    ...state,
+                    isFetching: true,
+                  }
+                case DELETE_RESTAURANT_SUCCESS:
+                  return {
+                    ...state,
+                    restaurants:state.restaurants.filter(rest => rest.id !== action.payload)
+                  }
+                  case DELETE_RESTAURANT_ERROR:
                     return {
                       ...state,
                       isFetching: false,
