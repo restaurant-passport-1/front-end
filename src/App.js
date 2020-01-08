@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React  from 'react';
 
 import 'materialize-css/dist/css/materialize.min.css';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import store from './store';
 import {Provider} from 'react-redux';
@@ -18,6 +18,7 @@ import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail';
 import UpdateRestaurant from './components/UpdateRestaurant/UpdateRestaurant';
 import Login from './components/Login/Login';
 import MyPassport from './components/addedrestaurants/addedrestaurants';
+import PrivateRoute from './utils/privateroute';
 
 function App() {
 
@@ -27,17 +28,22 @@ function App() {
       <div className='App'>
         <Router>
           <Navbar />
-          <Route exact path='/' component={Home} />
-          {/* <Route exact path='/signup' component={Signup} /> */}
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/update' component={UpdateRestaurant} />
+          <Switch>
+              
+              {/* <Route exact path='/signup' component={Signup} /> */}
+              
+              <PrivateRoute exact path='/update' component={UpdateRestaurant} />
 
-          <Route exact path='/restaurantlist' component={RestaurantList} />
-          <Route exact path='/restaurantlist/:id' component={RestaurantDetail} />
-          <Route path='/mypassport' component={MyPassport} />
-          <Route path='/dashboard' component={Dashboard} />
-          <Route path='/dashboard' component={Footer} />
+              <PrivateRoute exact path='/restaurantlist' component={RestaurantList} />
+              <PrivateRoute exact path='/restaurantlist/:id' component={RestaurantDetail} />
+              <PrivateRoute path='/mypassport' component={MyPassport} />
+              <PrivateRoute path='/dashboard' component={Dashboard} />
+              <PrivateRoute path='/dashboard' component={Footer} />
+              <PrivateRoute exact path='/' component={Home} />
+              <Route exact path='/signup' component={Signup} />
+              <Route exact path='/login' component={Login} />
+              <Route component={Login} />
+          </Switch>
         </Router>
       </div>
 

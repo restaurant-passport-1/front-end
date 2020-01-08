@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import {Link} from 'react-router-dom';
-import M from 'materialize-css/dist/js/materialize.min.js';
+
 import '../../styles/signup.css';
 import { signup } from "../../actions";
 import { connect } from "react-redux";
@@ -13,13 +13,13 @@ const Signup = (props) => {
   const initialState = {
     username: "",
     password: "",
-
+    name: "",
     city: "",
     email: ""
   };
 
   const [user, setUser] = useState(initialState);
-  const { username, password, city, email } = user;
+  const { username, password, name, city, email } = user;
 
   
 
@@ -32,14 +32,14 @@ const Signup = (props) => {
     e.preventDefault();
     signup(user);
     setUser(initialState);
-    M.toast({html: `Signup successul by ${username}`})
+  
     props.history.push('/');
   };
 
   return (
 
     <div className='container'>
-      <h4 className='title2'>Ready to singup</h4>
+      <h4 className='title2'>Ready to signup</h4>
       <form onSubmit={handleSubmit}>
         <div className='inputs'>
           <label className='bg'>Enter username</label>
@@ -51,7 +51,8 @@ const Signup = (props) => {
             name='username'
             onChange={handleChange}
             value={username}
-            placeholder='Sunil Karki'
+            placeholder='Username'
+            required
           />
         </div>
         <div className='inputs'>
@@ -66,6 +67,20 @@ const Signup = (props) => {
             onChange={handleChange}
             value={password}
             placeholder='********'
+            required
+          />
+        </div>
+        <div className='inputs'>
+
+          <label className='bg'>Name</label>
+
+          <input
+            type='text'
+            name='name'
+            onChange={handleChange}
+            value={name}
+            placeholder='Name'
+            required
           />
         </div>
         <div className='inputs'>
@@ -77,7 +92,8 @@ const Signup = (props) => {
             name='city'
             onChange={handleChange}
             value={city}
-            placeholder='Kathmandu'
+            placeholder='City'
+            required
           />
         </div>
 
@@ -92,7 +108,8 @@ const Signup = (props) => {
             name='email'
             onChange={handleChange}
             value={email}
-            placeholder='sunil@gmail.com'
+            placeholder='Email'
+            required
           />
         </div>
 

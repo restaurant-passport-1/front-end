@@ -13,11 +13,15 @@ import {
     ADD_RESTAURANT_ERROR,
     UPDATE_RESTAURANT_START,
     UPDATE_RESTAURANT_SUCCESS,
-    UPDATE_RESTAURANT_ERROR
+    UPDATE_RESTAURANT_ERROR,
+    DELETE_RESTAURANT_START,
+    DELETE_RESTAURANT_SUCCESS,
+    DELETE_RESTAURANT_ERROR
+
   } from '../actions/index'
   
   const initialState = {
-    user: [],
+    user: {},
     username: '',
     error: '',
     isFetching: false,
@@ -36,7 +40,8 @@ import {
         return {
           ...state,
           isFetching: false,
-          username: action.payload
+          user: {...state.user, 
+            id: action.payload}
         };
       case LOGIN_ERROR:
         return {
@@ -55,7 +60,13 @@ import {
       case SIGNUP_SUCCESS:
         return {
           ...state,
-          user: action.payload,
+          user: {
+            id: action.payload.id,
+            username: action.payload.username,
+            name: action.payload.name,
+            city: action.payload.city,
+            email: action.payload.email
+          },
           isFetching: false
        
         };
@@ -114,6 +125,23 @@ import {
                       ...state.restaurants, isEditing:!action.isEditing}: state.restaurants)
                   }
                   case UPDATE_RESTAURANT_ERROR:
+                    return {
+                      ...state,
+                      isFetching: false,
+                      error: action.payload
+                    }
+
+                  case DELETE_RESTAURANT_START:
+                  return {
+                    ...state,
+                    isFetching: true,
+                  }
+                case DELETE_RESTAURANT_SUCCESS:
+                  return {
+                    ...state,
+                    restaurants:state.restaurants.filter(rest => rest.id !== action.payload)
+                  }
+                  case DELETE_RESTAURANT_ERROR:
                     return {
                       ...state,
                       isFetching: false,
