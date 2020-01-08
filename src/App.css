@@ -13,6 +13,10 @@
   color: #f0c352 !important;
 }
 
+.sign-title {
+  text-align: center;
+}
+
 .passport-restaurants-grid {
   display: flex;
   flex-wrap: wrap;
