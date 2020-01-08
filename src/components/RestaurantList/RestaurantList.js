@@ -4,27 +4,27 @@ import React, {useState, useEffect} from 'react';
 import axiosWithAuth from '../../utils/axioswithauth';
 import Restaurant from '../Restaurant/Restaurant';
 import '../../styles/restaurantlist.css';
+import { fetchAllRestaurant } from '../../actions';
+import { connect } from 'react-redux';
+import Preloader from '../../utils/Preloader';
 
 const RestaurantList = props => {
-  const [list, setList] = useState([]);
 
+const { fetchAllRestaurant, isFetching, restaurants, id } = props;
   useEffect(() => {
-    axiosWithAuth()
-      // .get('https://restaurantpassport1.herokuapp.com/api/auth/passport')
-      .get('https://restaurantpassport1.herokuapp.com/api/auth/restaurants/search')
-      .then(response => {
-        console.log('res1', response);
-        setList(response.data.businesses);
-      })
-      .catch();
-  }, []);
+    fetchAllRestaurant(id);
+  }, [id]);
+
+  if (isFetching || restaurants  === null) {
+    return <Preloader />
+  }
 
   return (
     <div className='container'>
       <h4 className='res'>Restaurant List</h4>
    
         <div className='row'>
-        {list && list.map(each => {
+        {restaurants && restaurants.map(each => {
           return (
             // <Link to={`/restaurantlist/${each.id}`}>
               <div className='list col s12 m4 l3' >
@@ -39,4 +39,14 @@ const RestaurantList = props => {
     </div>
   );
 };
-export default RestaurantList;
+
+const mapStateToProps = state => {
+
+  return {
+    isFetching: state.isFetching,
+    restaurants: state.restaurants,
+    id: state.user.id
+
+  }
+}
+export default connect(mapStateToProps, {fetchAllRestaurant})(RestaurantList);

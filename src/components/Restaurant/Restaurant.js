@@ -19,14 +19,14 @@ const Restaurant = props => {
     // <div className='restaurant'>
       <div className='card'>
         <div className="card-image wave-effect wave-light wave-block">
-          <img src={each.image_url} alt='restaurant' class='responsive-img' style={{maxHeight: '200px'}}/>
+          <img src={each.image_url} alt='restaurant' class='responsive-img' style={{height: '200px'}}/>
           <span class="card-title">{each.name}</span>
         </div>
         <div class="card-content">
            <p>Rating: {each.rating}</p>
            <p>Review Count: {each.review_count}</p>
-           <p>Price: {each.price}</p>
-           <p>City: {each.location.city}</p>
+            <p>Price: {each.price}</p>
+           <p>City: {each.location.city}</p> 
            {/* <p>Address: {each.display_address}</p> */}
 
           <button className='btn btn-small' onClick={handleClick} style={{marginTop: '10px', backgroundColor: '#ee6e73'}}>Add me</button>

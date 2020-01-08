@@ -6,9 +6,10 @@ import '../../styles/signup.css';
 import { signup } from "../../actions";
 import { connect } from "react-redux";
 
+import Preloader from '../../utils/Preloader';
 
 const Signup = (props) => {
-  const { signup } = props;
+  const { signup, isFetching } = props;
 
   const initialState = {
     username: "",
@@ -35,6 +36,11 @@ const Signup = (props) => {
   
     props.history.push('/');
   };
+
+  if (isFetching) {
+    return <Preloader />
+  }
+
 
   return (
 
@@ -122,5 +128,11 @@ const Signup = (props) => {
     </div>
   );
 };
+const mapStateToProps = state => {
 
-export default connect(null, { signup })(Signup);
+  return {
+    isFetching: state.isFetching
+  
+  }
+}
+export default connect(mapStateToProps, { signup })(Signup);
