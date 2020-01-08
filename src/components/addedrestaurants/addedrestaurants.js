@@ -114,7 +114,7 @@ export const MyPassport = ({fetchRestaurant, id, restaurants}) => {
   return (
     <div className='container'>
       <h1>My Passport</h1>
-      <h2>Las Vegas Stamped Restaurants</h2>
+      <h2>{restaurants && restaurants[0].city} Stamped Restaurants</h2>
       <div className='passport-restaurants-grid'>
         {restaurants && restaurants.map(restaurant => {
           return (
