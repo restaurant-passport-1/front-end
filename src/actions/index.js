@@ -1,6 +1,6 @@
 import React from 'react';
 // import axios from 'axios';
-
+import M from 'materialize-css/dist/js/materialize.min.js';
 
 import {axiosWithAuth} from '../utils/axioswithauth'
 
@@ -37,10 +37,12 @@ export const login = user => dispatch => {
 
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
       dispatch({type: LOGIN_SUCCESS, payload: res.data.user_id});
+      M.toast({html: `Login successul by ${user.username}`})
     })
     .catch (err => {
       console.log('err', err.response.data.message);
       dispatch({type: LOGIN_ERROR, payload: err.response.data.message});
+      M.toast({html: `Login failed.  Please try again`})
     });
 };
 
@@ -53,12 +55,14 @@ export const signup = user => dispatch => {
       console.log('signup', res);
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
       dispatch({type: SIGNUP_SUCCESS, payload: res.data});
+      M.toast({html: `Signup successul by ${user.username}`})
       // localStorage.setItem('token', res.data); //whatever token obect key is on object
       // dispatch({ type: SIGNUP_SUCCESS, payload: res.data }); //whatever the token object key is
     })
     .catch(err => {
       console.log('err', err.response);
       dispatch({type: SIGNUP_ERROR, payload: err.response.data.message}); //whatever is the error
+      M.toast({html: `Signup failed.  Please try again`})
     });
 };
 

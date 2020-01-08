@@ -10,7 +10,7 @@ export default function PassportRestaurantCard(props) {
     <div className="card passport-card">
       <div className="card-content">
         <span className="card-title red-text">{restaurantName}</span>
-        <p><span className='green-text'>Address:</span> {streetAddress} {', '}{city} {', '}
+        <p><span className='green-text'>Address:</span> {streetAddress}{', '}{city}{', '}
         {zipcode}</p>
         <p><span className='green-text'>Phone:</span> {phoneNumber}</p>
         <p><span className='green-text'>Web:</span> {websiteUrl}</p>
