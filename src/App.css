@@ -3,6 +3,8 @@
 
 /* #8c2c2c stiletto red */
 /* #f0c352 ronchi yellow */
+/* #ababab silver chalice */
+/* #fcfcfc alabaster */
 
 .nav-wrapper {
   padding: 0 15px;
@@ -15,6 +17,19 @@
 
 .sign-title {
   text-align: center;
+  margin-bottom: 18px;
+}
+
+form {
+  border-radius: 15px;
+}
+
+/* override materialize styles for input */
+input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default) {
+  background: #fcfcfc;
+  border: 1px solid #ababab;
+  border-radius: 5px;
+  padding: 0 8px;
 }
 
 .passport-restaurants-grid {
