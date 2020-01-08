@@ -1,107 +1,114 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import PassportRestaurantCard from './PassportRestaurantCard';
-import axiosWithAuth from '../../utils/axioswithauth';
 
-const dummyPassportRestaurantList = [
-  {
-    restName: "Suika",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 1
-  }, 
+import { fetchRestaurant } from '../../actions';
+import { connect } from  'react-redux';
 
-  {
-    restName: "Tamari Bar",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 2
-  }, 
+// const dummyPassportRestaurantList = [
+//   {
+//     restName: "Suika",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 1
+//   }, 
 
-  {
-    restName: "Rondo",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 3
-  }, 
+//   {
+//     restName: "Tamari Bar",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 2
+//   }, 
 
-  {
-    restName: "Chung Chun Rice Dog",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 4
-  }, 
+//   {
+//     restName: "Rondo",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 3
+//   }, 
 
-  {
-    restName: "Beecher's Handmade Cheese",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 5
-  }, 
+//   {
+//     restName: "Chung Chun Rice Dog",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 4
+//   }, 
 
-  {
-    restName: "Skillet",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 6
-  }, 
+//   {
+//     restName: "Beecher's Handmade Cheese",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 5
+//   }, 
 
-  {
-    restName: "Ezell's Famous Chicken",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 7
-  }, 
+//   {
+//     restName: "Skillet",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 6
+//   }, 
 
-  {
-    restName: "Din Tai Fung",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 8
-  }, 
+//   {
+//     restName: "Ezell's Famous Chicken",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 7
+//   }, 
 
-  {
-    restName: "85°C Bakery",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 9
-  }, 
+//   {
+//     restName: "Din Tai Fung",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 8
+//   }, 
 
-  {
-    restName: "Wataru",
-    img: "https://source.unsplash.com/random",
-    myRating: 4,
-    stamped: true,
-    id: 10
-  }
-];
+//   {
+//     restName: "85°C Bakery",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 9
+//   }, 
 
-export const MyPassport = () => {
-  const [passportRestaurantList, setPassportRestaurantList] = useState(dummyPassportRestaurantList);
+//   {
+//     restName: "Wataru",
+//     img: "https://source.unsplash.com/random",
+//     myRating: 4,
+//     stamped: true,
+//     id: 10
+//   }
+// ];
 
-  const removeFromPassport = (id) => {
-    setPassportRestaurantList(passportRestaurantList.filter(restaurant => restaurant.id !== id));
-  };
+export const MyPassport = ({fetchRestaurant, id, restaurants}) => {
+  // const [passportRestaurantList, setPassportRestaurantList] = useState([]);
+
+  // const removeFromPassport = (id) => {
+  //   setPassportRestaurantList(passportRestaurantList.filter(restaurant => restaurant.id !== id));
+  // };
 
   useEffect(() => {
-    // * * * NEEDS CORRECT LINK
-    axiosWithAuth().get('https://restaurantpassport1.herokuapp.com/api/auth/passport/:id/user')
-    .then(response => {
-      console.dir(response.data);
-    })
-    .catch(error => {
-      console.log('Error', error);
-    })
+
+    fetchRestaurant(id);
+
+    
+
+    // // * * * NEEDS CORRECT LINK
+    // axiosWithAuth().get('https://restaurantpassport1.herokuapp.com/api/auth/passport/:id/user')
+    // .then(response => {
+    //   console.dir(response.data);
+    // })
+    // .catch(error => {
+    //   console.log('Error', error);
+    // })
   }, [])
 
   return (
@@ -109,14 +116,11 @@ export const MyPassport = () => {
       <h1>My Passport</h1>
       <h2>Las Vegas Stamped Restaurants</h2>
       <div className='passport-restaurants-grid'>
-        {passportRestaurantList.map(restaurant => {
+        {restaurants && restaurants.map(restaurant => {
           return (
             <Link to={"/mypassport"}>
               <PassportRestaurantCard 
-                
-                restName={restaurant.restName} 
-                restaurant={restaurant}
-                removeFromPassport={removeFromPassport}
+                restaurant = {restaurant}
               />
             </Link>
           );
@@ -126,4 +130,10 @@ export const MyPassport = () => {
   );
 }
 
-export default MyPassport;
+const mapStateToProps = state => {
+  return {
+    id: state.user.id,
+    restaurants: state.restaurants
+  }
+}
+export default connect( mapStateToProps, { fetchRestaurant})(MyPassport);
