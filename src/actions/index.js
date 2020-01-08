@@ -64,19 +64,19 @@ export const signup = user => dispatch => {
 
 
 
-export const fetchRestaurant = user => dispatch => {
+export const fetchRestaurant = id => dispatch => {
 
   dispatch({type: FETCH_RESTAURANT_START});
   return axiosWithAuth()
-  .get(`/api/auth/passport/${user.id}/user`)
+  .get(`/api/auth/passport/${id}/user`)
   .then(res => {
     console.log('get', res)
     // localStorage.setItem('token', res.data);
     dispatch({type: FETCH_RESTAURANT_SUCCESS, payload: res.data});
   })
   .catch(err => {
-    console.log('err', err.response);
-    dispatch({type: FETCH_RESTAURANT_ERROR, payload: 'res.response'});
+    console.log('err', err.response.data.message);
+    dispatch({type: FETCH_RESTAURANT_ERROR, payload: err.response.data.message});
   })
 }
 
