@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useState }  from 'react';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -21,13 +21,14 @@ import MyPassport from './components/addedrestaurants/addedrestaurants';
 import PrivateRoute from './utils/privateroute';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
 
     <Provider store={store}>
       <div className='App'>
         <Router>
-          <Navbar />
+          <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
           <Switch>
               
               {/* <Route exact path='/signup' component={Signup} /> */}
@@ -41,7 +42,9 @@ function App() {
               <PrivateRoute path='/dashboard' component={Footer} />
               <PrivateRoute exact path='/' component={Home} />
               <Route exact path='/signup' component={Signup} />
-              <Route exact path='/login' component={Login} />
+              <Route exact path='/login' 
+                render={props => <Login {...props} setLoggedIn={setLoggedIn} />}
+              />
               <Route component={Login} />
           </Switch>
         </Router>

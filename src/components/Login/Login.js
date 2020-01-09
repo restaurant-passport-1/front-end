@@ -17,7 +17,6 @@ export const Login = (props) => {
   const handleChange = e => {
     setUser({...user, 
       [e.target.name]: e.target.value});
-   
   };
 
   const handleSubmit = e => {
@@ -28,6 +27,7 @@ export const Login = (props) => {
         password: ''
     });
 
+    props.setLoggedIn(true);
 
     props.history.push('/');
 
