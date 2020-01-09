@@ -48,6 +48,12 @@ const EditRestModal = (props) => {
         })
     }
 
+    const handleCheckbox = (e) => {
+        setRestaurant({
+            ...restaurant,
+            stamped: !stamped
+        })
+    }
     const onSubmit= (e) => {
         e.preventDefault();
         updateRestaurant(restaurant);
@@ -103,8 +109,8 @@ const EditRestModal = (props) => {
                     <div className="input-field">
                         <p>
                             <label>
-                                <input type="checkbox" className="filled-in" checked={stamped} value={stamped}
-                                onChange={handleChange} /><span>Stamped</span>
+                                <input type="checkbox" className="filled-in" name ='stamped' checked={stamped} 
+                                onChange={handleCheckbox} /><span>Stamped</span>
                             </label>
                             
                         </p>

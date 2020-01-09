@@ -8,6 +8,8 @@ export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 
+export const  SET_USER = 'SET_USER';
+
 export const SIGNUP_START = 'SIGNUP_START';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
@@ -40,13 +42,15 @@ export const login = user => dispatch => {
   dispatch({type: LOGIN_START});
   //return will return axioswithauth vs axios
   return axiosWithAuth()
-    .post('https://restaurantpassport1.herokuapp.com/api/auth/login', user)
+    .post('/api/auth/login', user)
     .then(res => {
-      console.log('user for id', res);
-
+      console.log('user for signin', res);
+      localStorage.setItem('user_id', res.data.user_id);
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
-      dispatch({type: LOGIN_SUCCESS, payload: res.data.user_id});
-      M.toast({html: `Login successful by ${user.username}`})
+
+      dispatch({type: LOGIN_SUCCESS, payload: res.data});
+      M.toast({html: `Login successul by ${user.username}`})
+
     })
     .catch (err => {
       console.log('err', err.response.data.message);
@@ -54,6 +58,16 @@ export const login = user => dispatch => {
       M.toast({html: `Login failed.  Please try again`})
     });
 };
+
+export const setUser = user_id => {
+
+  
+
+  return {
+    type: SET_USER,
+    payload: user_id
+  }
+}
 
 export const signup = user => dispatch => {
   dispatch({type: SIGNUP_START});

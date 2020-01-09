@@ -11,7 +11,7 @@ import Preloader from '../../utils/Preloader';
 const RestaurantList = props => {
 
 const [restaurants, setRestaurants] = useState([])
-const { isFetching, id } = props;
+const { isFetching, id, city } = props;
 
 console.log('fetching id', id);
 
@@ -36,7 +36,7 @@ console.log('fetching id', id);
 
   return (
     <div className='container'>
-      <h4 className='res'>Restaurant List in Your Area</h4>
+      <h4 className='res'>Restaurant List in {restaurants && `${city}`} Area</h4>
    
         <div className='row'>
         {restaurants && restaurants.map(each => {
@@ -60,7 +60,8 @@ const mapStateToProps = state => {
   return {
     isFetching: state.isFetching,
 
-    id: state.user.id
+    id: state.user.id,
+    city: state.user.city
 
   }
 }

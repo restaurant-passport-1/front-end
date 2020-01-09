@@ -6,8 +6,14 @@ const HeaderWithLogOut = ({ setLoggedIn }) => {
 		<Link className='log-out' to='/login' onClick={() => {
 			localStorage.removeItem('token');
 
+			localStorage.removeItem('user_id');
+
+
+
+
 			setLoggedIn(false);
 		}}>
+
 			Sign Out
 		</Link>
 	);
