@@ -47,8 +47,10 @@ export const login = user => dispatch => {
       console.log('user for signin', res);
       localStorage.setItem('user_id', res.data.user_id);
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
+
       dispatch({type: LOGIN_SUCCESS, payload: res.data});
       M.toast({html: `Login successul by ${user.username}`})
+
     })
     .catch (err => {
       console.log('err', err.response.data.message);
@@ -76,7 +78,7 @@ export const signup = user => dispatch => {
       console.log('signup', res);
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
       dispatch({type: SIGNUP_SUCCESS, payload: res.data});
-      M.toast({html: `Signup successul by ${user.username}`})
+      M.toast({html: `Signup successful by ${user.username}`})
       // localStorage.setItem('token', res.data); //whatever token obect key is on object
       // dispatch({ type: SIGNUP_SUCCESS, payload: res.data }); //whatever the token object key is
     })

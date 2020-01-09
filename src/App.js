@@ -1,4 +1,4 @@
-import React, { useEffect }  from 'react';
+import React, { useState, useEffect }  from 'react';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -23,7 +23,11 @@ import MyPassport from './components/addedrestaurants/addedrestaurants';
 import PrivateRoute from './utils/privateroute';
 import { connect } from 'react-redux';
 
+
+
 function App({setUser}) {
+  const [loggedIn, setLoggedIn] = useState(false);
+
 
   // init Materialize JS
   useEffect(() => {
@@ -39,11 +43,11 @@ function App({setUser}) {
   return (
 
 
+
+
       <div className='App'>
         <Router>
-          <Navbar />
-          
-          
+          <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
           <Switch>
               
               {/* <Route exact path='/signup' component={Signup} /> */}
@@ -58,7 +62,9 @@ function App({setUser}) {
               <PrivateRoute exact path='/' component={Home} />
               <PrivateRoute exact path='/mypassport' component={MyPassport} />
               <Route exact path='/signup' component={Signup} />
-              <Route exact path='/login' component={Login} />
+              <Route exact path='/login' 
+                render={props => <Login {...props} setLoggedIn={setLoggedIn} />}
+              />
               <Route component={Login} />
 
              
@@ -80,4 +86,6 @@ function App({setUser}) {
 
 
 
+
 export default connect(null, { setUser })(App);
+

@@ -17,7 +17,6 @@ export const Login = (props) => {
   const handleChange = e => {
     setUser({...user, 
       [e.target.name]: e.target.value});
-   
   };
 
   const handleSubmit = e => {
@@ -28,6 +27,7 @@ export const Login = (props) => {
         password: ''
     });
 
+    props.setLoggedIn(true);
 
     props.history.push('/');
 
@@ -37,10 +37,9 @@ export const Login = (props) => {
     return <Preloader />
   }
 
-
   return (
     <div className='container'>
-      <h4 className='title1'>Welcome to Login form</h4>
+      <h4 className='sign-title'>Log In</h4>
       <div className='form-con'>
         <form onSubmit={handleSubmit}>
           <div className='inputs'>
@@ -64,11 +63,12 @@ export const Login = (props) => {
               placeholder='********'
               required
             />
-            <button className='btn'>Login</button>
-            <Link to='/signup'>
-              <small className='text'>Need to signup</small>
-            </Link>
           </div>
+          <button className='btn'>Log In</button>
+          <small>
+            No account? 
+            <Link to='/signup' className='small'>Sign up</Link>
+          </small>
         </form>
       </div>
     </div>

@@ -22,8 +22,6 @@ const Signup = (props) => {
   const [user, setUser] = useState(initialState);
   const { username, password, name, city, email } = user;
 
-  
-
   const handleChange = e => {
     setUser({...user, [e.target.name]: e.target.value});
     console.log([e.target.name], e.target.value);
@@ -45,11 +43,10 @@ const Signup = (props) => {
   return (
 
     <div className='container'>
-      <h4 className='title2'>Ready to signup</h4>
+      <h4 className='sign-title'>Sign Up</h4>
       <form onSubmit={handleSubmit}>
         <div className='inputs'>
           <label className='bg'>Enter username</label>
-
     
 
           <input
@@ -64,8 +61,6 @@ const Signup = (props) => {
         <div className='inputs'>
 
           <label className='bg'>Enter password</label>
-
-          <label>Enter password</label>
 
           <input
             type='password'
@@ -91,7 +86,7 @@ const Signup = (props) => {
         </div>
         <div className='inputs'>
 
-          <label className='bg'>Enter City</label>
+          <label className='bg'>City</label>
 
           <input
             type='text'
@@ -105,9 +100,7 @@ const Signup = (props) => {
 
         <div className='inputs'>
 
-          <label className='bg'>Enter email</label>
-
-
+          <label className='bg'>Email</label>
 
           <input
             type='email'
@@ -120,9 +113,10 @@ const Signup = (props) => {
         </div>
 
         <button className='btn'>Sign up</button>
-        <Link to='/login'>
-          <small className='small'>Need to Sign in </small>
-        </Link>
+        <small>
+          Already have an account?
+          <Link to='/login' className='small'>Sign in</Link>
+        </small>
 
       </form>
     </div>
