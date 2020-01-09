@@ -24,7 +24,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   return (
-
     <Provider store={store}>
       <div className='App'>
         <Router>

@@ -23,6 +23,11 @@
 
 form {
   border-radius: 15px;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background: #E8DFBF;
 }
 
 /* override materialize styles for input */
@@ -31,14 +36,27 @@ input[type=text]:not(.browser-default), input[type=password]:not(.browser-defaul
   border: 1px solid #ababab;
   border-radius: 5px;
   padding: 0 8px;
+  margin-top: 6px;
+  box-sizing: border-box;
+}
+
+label {
+  color: black;
 }
 
 .btn {
   background-color: #8c2c2c;
+  font-family: 'Roboto Slab', serif;
+  width: 50%;
+  margin: 26px auto 0;
 }
 
 .btn:hover {
   background-color: #a05252; /* lighter shade of stiletto red */
+}
+
+small {
+  margin: 10px auto 0;
 }
 
 .passport-restaurants-grid {

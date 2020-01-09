@@ -3,6 +3,7 @@ body {
   font-family: 'Roboto Slab', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #fff9e2;
 }
 
 code {

@@ -1,13 +1,13 @@
 form {
-  width: 40%;
+  /* width: 40%; */
   margin: auto;
   box-shadow: 0 5px 10px #ccc;
-  padding: 20px;
+  /* padding: 40px; */
 }
 
-.bg {
+/* .bg {
   color: red;
-}
+} */
 
 .btn {
   padding: 1px 10px;
