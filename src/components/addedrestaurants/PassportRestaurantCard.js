@@ -28,6 +28,7 @@ function PassportRestaurantCard(props) {
 
   const onDelete = () => {
     deleteRestaurant(props.restaurant);
+    
   };
   return (
     <div className="card passport-card">
@@ -56,7 +57,7 @@ function PassportRestaurantCard(props) {
         </p>
 
         <p>
-          <span className="green-text">Stamped:</span> {stamped}
+          <span className="green-text">Stamped:</span> {stamped ? 'Yes' : 'No'}
         </p>
         <p>
           <span className="green-text">Notes:</span> {notes}

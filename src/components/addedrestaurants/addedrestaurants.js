@@ -88,7 +88,7 @@ import { connect } from  'react-redux';
 //   }
 // ];
 
-export const MyPassport = ({fetchRestaurant, id, restaurants, isFetching }) => {
+export const MyPassport = ({fetchRestaurant, id, restaurants, isFetching, city, history }) => {
   // const [passportRestaurantList, setPassportRestaurantList] = useState([]);
 
   // const removeFromPassport = (id) => {
@@ -97,7 +97,9 @@ export const MyPassport = ({fetchRestaurant, id, restaurants, isFetching }) => {
 
   useEffect(() => {
 
-    fetchRestaurant(id);
+
+    fetchRestaurant(id)
+  
 
     
 
@@ -114,14 +116,14 @@ export const MyPassport = ({fetchRestaurant, id, restaurants, isFetching }) => {
   if (isFetching || restaurants === null) {
     return <Preloader />
   }
-
+  console.log('my city', city);
 
   return (
     <div className='container'>
       <h1>My Passport</h1>
-      <h2>{restaurants && restaurants[0].city} Stamped Restaurants</h2>
+      <h2>{restaurants && `${city}`} Stamped Restaurants</h2>
       <div className='passport-restaurants-grid row'>
-        {restaurants && restaurants.map(restaurant => {
+        {restaurants ? restaurants.map(restaurant => {
           return (
             // <Link to={"/mypassport"}>
            <div className="list col s12 m4 l3">
@@ -132,7 +134,7 @@ export const MyPassport = ({fetchRestaurant, id, restaurants, isFetching }) => {
               
             // </Link>
           );
-        })}
+        }) : <h2 class='red-text'> No Restaurant in your Passport</h2>}
       </div>
     </div>
   );
@@ -141,6 +143,7 @@ export const MyPassport = ({fetchRestaurant, id, restaurants, isFetching }) => {
 const mapStateToProps = state => {
   return {
     id: state.user.id,
+    city: state.user.city,
     restaurants: state.restaurants,
     isFetching: state.isFetching
   }

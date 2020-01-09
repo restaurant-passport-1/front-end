@@ -2,6 +2,7 @@ import {
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_ERROR,
+    SET_USER,
     SIGNUP_START,
     SIGNUP_SUCCESS,
     SIGNUP_ERROR,
@@ -45,7 +46,9 @@ import {
           ...state,
           isFetching: false,
           user: {...state.user, 
-            id: action.payload}
+            id: action.payload.user_id,
+            city: action.payload.city
+          }
         };
       case LOGIN_ERROR:
         return {
@@ -53,6 +56,17 @@ import {
           isFetching: false,
           error: action.payload
           //TODO: error: action.payload
+        };
+
+      case SET_USER:
+
+        console.log('user in reducer', state.user)
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            id: action.payload
+          }
         };
   
       case SIGNUP_START:
