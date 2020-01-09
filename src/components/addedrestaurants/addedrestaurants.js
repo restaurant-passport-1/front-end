@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import PassportRestaurantCard from './PassportRestaurantCard';
 import Preloader from '../../utils/Preloader';
@@ -120,14 +120,17 @@ export const MyPassport = ({fetchRestaurant, id, restaurants, isFetching }) => {
     <div className='container'>
       <h1>My Passport</h1>
       <h2>{restaurants && restaurants[0].city} Stamped Restaurants</h2>
-      <div className='passport-restaurants-grid'>
+      <div className='passport-restaurants-grid row'>
         {restaurants && restaurants.map(restaurant => {
           return (
-            <Link to={"/mypassport"}>
-              <PassportRestaurantCard 
-                restaurant = {restaurant}
+            // <Link to={"/mypassport"}>
+           <div className="list col s12 m4 l3">
+             <PassportRestaurantCard 
+                restaurant = {restaurant} user_id = {id}
               />
-            </Link>
+           </div>
+              
+            // </Link>
           );
         })}
       </div>

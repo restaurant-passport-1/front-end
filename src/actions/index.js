@@ -16,9 +16,10 @@ export const FETCH_RESTAURANT_START = 'FETCH_RESTAURANT_START';
 export const FETCH_RESTAURANT_SUCCESS = 'FETCH_RESTAURANT_SUCCESS';
 export const FETCH_RESTAURANT_ERROR = 'FETCH_RESTAURANT_ERROR';
 
-export const FETCH_ALL_START = 'FETCH_ALL_START';
-export const FETCH_ALL_SUCCESS = 'FETCH_ALL_SUCCESS';
-export const FETCH_ALL_ERROR = 'FETCH_ALL_ERROR';
+
+export const SET_CURRENT = 'SET_CURRENT';
+export const CLEAR_CURRENT = 'CLEAR_CURRENT';
+
 
 export const ADD_RESTAURANT_START = 'ADD_RESTAURANT_START';
 export const ADD_RESTAURANT_SUCCESS = 'ADD_RESTAURANT_SUCCESS';
@@ -41,7 +42,7 @@ export const login = user => dispatch => {
   return axiosWithAuth()
     .post('https://restaurantpassport1.herokuapp.com/api/auth/login', user)
     .then(res => {
-      console.log(res);
+      console.log('user for id', res);
 
       localStorage.setItem('token', res.data.token); // or whatever response is named on user object
       dispatch({type: LOGIN_SUCCESS, payload: res.data.user_id});
@@ -93,25 +94,23 @@ export const fetchRestaurant = id => dispatch => {
 }
 
 
-export const fetchAllRestaurant = (id )=> dispatch => {
 
-  dispatch({type: FETCH_ALL_START});
-  console.log('myid', id);
-  return axiosWithAuth()
-  .get(`/api/auth/restaurants/search?id=${id}`)
-  .then(res => {
-    console.log('all', res)
-    // localStorage.setItem('token', res.data);
-    dispatch({type: FETCH_ALL_SUCCESS, payload: res.data.businesses});
-  })
-  .catch(err => {
-   
-    dispatch({type: FETCH_ALL_ERROR, payload: err.response.data.message});
-  })
+
+export const setCurrent = (restaurant) => {
+
+    return{
+      type: SET_CURRENT,
+      payload: restaurant
+    }
 }
 
+export const clearCurrent = () => {
 
-
+  return{
+    type: CLEAR_CURRENT
+    
+  }
+}
 
 export const addRestaurant = restaurant => dispatch => {
   dispatch({type: ADD_RESTAURANT_START});
@@ -138,9 +137,9 @@ export const updateRestaurant = restaurant => dispatch => {
 
   dispatch({type: UPDATE_RESTAURANT_START});
   return axiosWithAuth()
-  .put('/api/auth/passport/:id', restaurant)
+  .put(`/api/auth/passport/${restaurant.id}`, restaurant)
   .then(res => {
-    console.log('get', res)
+    console.log('put', res)
     // localStorage.setItem('token', res.data);
     dispatch({type: UPDATE_RESTAURANT_SUCCESS, payload: res.data});
   })

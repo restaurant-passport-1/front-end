@@ -8,9 +8,9 @@ import {
     FETCH_RESTAURANT_START,
     FETCH_RESTAURANT_SUCCESS,
     FETCH_RESTAURANT_ERROR, 
-    FETCH_ALL_START,
-    FETCH_ALL_SUCCESS,
-    FETCH_ALL_ERROR, 
+  
+    SET_CURRENT,
+    CLEAR_CURRENT,
     ADD_RESTAURANT_START,
     ADD_RESTAURANT_SUCCESS,
     ADD_RESTAURANT_ERROR,
@@ -28,7 +28,8 @@ import {
     username: '',
     error: '',
     isFetching: false,
-    restaurants: null
+    restaurants: null,
+    current: null
 
   };
   
@@ -101,25 +102,20 @@ import {
                 isFetching: false,
                 error: action.payload
               }
-              case FETCH_ALL_START:
-                return {
-                  ...state,
-                  isFetching: true
-                }
-          
-                case FETCH_ALL_SUCCESS:
-                  return {
-                    ...state,
-                    restaurants: action.payload,
-                    isFetching: false
-                  }
-            
-                  case FETCH_ALL_ERROR:
-                    return {
-                      ...state,
-                      isFetching: false,
-                      error: action.payload
-                    }
+              
+                    case SET_CURRENT:
+                      return {
+                        ...state,
+                        current: action.payload
+                  
+                      }
+                
+                      case CLEAR_CURRENT:
+                        return {
+                          ...state,
+                          current: null
+                        }
+
               case ADD_RESTAURANT_START:
                 return {
                   ...state,
@@ -128,6 +124,7 @@ import {
               case ADD_RESTAURANT_SUCCESS:
                 return {
                   ...state,
+                  isFetching: false,
                   restaurants: [...state.restaurants, action.payload]
                 }
                 case ADD_RESTAURANT_ERROR:
@@ -143,8 +140,10 @@ import {
                   }
                 case UPDATE_RESTAURANT_SUCCESS:
                   return {
-                    restaurants:state.restaurants.map(rest => rest.id === action.id ? {
-                      ...state.restaurants, isEditing:!action.isEditing}: state.restaurants)
+                    ...state,
+                    isFetching: false,
+                    restaurants:[...state.restaurants.filter(rest => rest.id !== action.payload.id), action.payload]
+                     
                   }
                   case UPDATE_RESTAURANT_ERROR:
                     return {
@@ -161,6 +160,7 @@ import {
                 case DELETE_RESTAURANT_SUCCESS:
                   return {
                     ...state,
+                    isFetching: false,
                     restaurants:state.restaurants.filter(rest => rest.id !== action.payload)
                   }
                   case DELETE_RESTAURANT_ERROR:
