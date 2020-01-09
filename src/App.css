@@ -35,13 +35,18 @@ input[type=text]:not(.browser-default), input[type=password]:not(.browser-defaul
   background: #fcfcfc;
   border: 1px solid #ababab;
   border-radius: 5px;
-  padding: 0 8px;
+  padding: 32px 8px;
   margin-top: 6px;
   box-sizing: border-box;
 }
 
 label {
   color: black;
+}
+
+/* override materialize styles for input in restaurant modal */
+.input-field > label {
+  padding: 0 8px;
 }
 
 .btn {
