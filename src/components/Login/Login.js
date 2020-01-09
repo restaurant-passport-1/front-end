@@ -17,7 +17,6 @@ export const Login = (props) => {
   const handleChange = e => {
     setUser({...user, 
       [e.target.name]: e.target.value});
-   
   };
 
   const handleSubmit = e => {
@@ -28,6 +27,7 @@ export const Login = (props) => {
         password: ''
     });
 
+    props.setLoggedIn(true);
 
     props.history.push('/');
 
@@ -36,7 +36,6 @@ export const Login = (props) => {
   if (props.isFetching) {
     return <Preloader />
   }
-
 
   return (
     <div className='container'>
@@ -64,11 +63,12 @@ export const Login = (props) => {
               placeholder='********'
               required
             />
-            <button className='btn'>Login</button>
-            <Link to='/signup'>
-              <small className='text'>Need to signup</small>
-            </Link>
           </div>
+          <button className='btn'>Log In</button>
+          <small>
+            No account? 
+            <Link to='/signup' className='small'>Sign up</Link>
+          </small>
         </form>
       </div>
     </div>
