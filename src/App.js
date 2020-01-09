@@ -1,13 +1,15 @@
-import React  from 'react';
+import React, { useEffect }  from 'react';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-
+import M from 'materialize-css/dist/js/materialize.min.js';
 import store from './store';
 import {Provider} from 'react-redux';
 import './App.css';
 import Dashboard from './components/dashboard/dashboard';
-
+import AddRestModal from './components/Restaurant/AddRestModal';
+import EditRestModal from './components/Restaurant/EditRestModal';
+// import Test from './components/Restaurant/test';
 import Signup from './components/Signup/Signup';
 
 import Navbar from './components/navbar/navbar';
@@ -22,12 +24,20 @@ import PrivateRoute from './utils/privateroute';
 
 function App() {
 
+  // init Materialize JS
+  useEffect(() => {
+    M.AutoInit();
+  })
+
+
   return (
 
     <Provider store={store}>
       <div className='App'>
         <Router>
           <Navbar />
+          
+          
           <Switch>
               
               {/* <Route exact path='/signup' component={Signup} /> */}
@@ -43,8 +53,16 @@ function App() {
               <Route exact path='/signup' component={Signup} />
               <Route exact path='/login' component={Login} />
               <Route component={Login} />
+
+             
           </Switch>
         </Router>
+         <div className="container">
+                 <AddRestModal />
+                 {/* <Test /> */}
+                 <EditRestModal />
+
+        </div>
       </div>
 
     </Provider>
