@@ -12,6 +12,7 @@ export default function Navbar({ loggedIn, setLoggedIn }) {
         <Link to={"/"} className="brand-logo">Restaurant Passport</Link>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><Link to={"/mypassport"}>My Passport</Link></li>
+          <li><a href="https://objective-meitner-f3b218.netlify.com">Home</a></li>
           <li><a href="https://objective-meitner-f3b218.netlify.com/about">About</a></li>
           {loggedIn ? (<li><HeaderWithLogOut setLoggedIn={setLoggedIn} /></li>) : (
             <>
