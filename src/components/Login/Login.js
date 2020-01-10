@@ -18,9 +18,9 @@ export const Login = props => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    props.login(user);
+    await props.login(user);
     setUser({
       username: '',
       password: ''
@@ -30,6 +30,7 @@ export const Login = props => {
     console.log('loggedIn', props.loggedIn);
 
     props.history.push('/');
+    console.log('history', props.history);
   };
 
   if (props.isFetching) {

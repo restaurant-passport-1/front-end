@@ -46,6 +46,7 @@ export const login = user => dispatch => {
 
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       M.toast({ html: `Login successul by ${user.username}` });
+      
     })
     .catch(err => {
       console.log('err', err.response.data.message);

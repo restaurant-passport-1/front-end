@@ -6,11 +6,12 @@ import Restaurant from '../Restaurant/Restaurant';
 import '../../styles/restaurantlist.css';
 
 import { connect } from 'react-redux';
-// import Preloader from '../../utils/Preloader';
+import Preloader from '../../utils/Preloader';
 
 const RestaurantList = props => {
   const [restaurants, setRestaurants] = useState([]);
-  const { isFetching, id, city } = props;
+  const [isloading, setIsloading] = useState(true);
+  const { id, city } = props;
 
   console.log('fetching id', id);
 
@@ -21,15 +22,17 @@ const RestaurantList = props => {
         console.log('all', res);
         // localStorage.setItem('token', res.data);
         setRestaurants(res.data.businesses);
+        setIsloading(false);
       })
       .catch(err => {
         console.error(err.response.data.message);
+        setIsloading(false);
       });
   }, [id]);
 
-  // if (isFetching || restaurants  === null) {
-  //   return <Preloader />
-  // }
+  if (isloading || restaurants === null) {
+    return <Preloader />;
+  }
 
   return (
     <div className="container">
@@ -55,8 +58,6 @@ const RestaurantList = props => {
 
 const mapStateToProps = state => {
   return {
-    isFetching: state.isFetching,
-
     id: state.user.id,
     city: state.user.city
   };
