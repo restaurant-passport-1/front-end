@@ -34,8 +34,12 @@ class App extends Component {
     });
   };
   // init Materialize JS
-  componentWillMount() {
+
+  componentDidMount() {
     M.AutoInit();
+  }
+
+  componentWillMount() {
     const user_id = parseInt(localStorage.getItem('user_id'));
     const user_city = localStorage.getItem('city');
     console.log('userid is', typeof user_id);
