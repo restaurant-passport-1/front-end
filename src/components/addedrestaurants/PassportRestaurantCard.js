@@ -57,7 +57,7 @@ function PassportRestaurantCard(props) {
         </p>
 
         <p>
-          <span className="green-text">Stamped:</span> {stamped ? 'Yes' : 'No'}
+          <span className="green-text">Stamped:</span> {stamped ? <i className='material-icons'>tag_faces</i> : 'No'}
         </p>
         <p>
           <span className="green-text">Notes:</span> {notes}
