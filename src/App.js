@@ -1,9 +1,8 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect, Component } from 'react';
 
 import 'materialize-css/dist/css/materialize.min.css';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import M from 'materialize-css/dist/js/materialize.min.js';
-
 
 import './App.css';
 import Dashboard from './components/dashboard/dashboard';
@@ -23,69 +22,80 @@ import MyPassport from './components/addedrestaurants/addedrestaurants';
 import PrivateRoute from './utils/privateroute';
 import { connect } from 'react-redux';
 
+class App extends Component {
+  state = {
+    loggedIn: false
+  };
+  // const [loggedIn, setLoggedIn] = useState(false);
 
-
-function App({setUser}) {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-
+  setLoggedIn = log => {
+    this.setState({
+      loggedIn: log
+    });
+  };
   // init Materialize JS
-  useEffect(() => {
+  componentWillMount() {
     M.AutoInit();
     const user_id = parseInt(localStorage.getItem('user_id'));
-    console.log('userid is', typeof user_id)
-    setUser(user_id);
-
-  })
-
-
-
-  return (
-
-
-
-
-      <div className='App'>
+    const user_city = localStorage.getItem('city');
+    console.log('userid is', typeof user_id);
+    this.props.setUser({
+      id: user_id,
+      city: user_city
+    });
+    if (user_id) this.setLoggedIn(true);
+  }
+  render() {
+    return (
+      <div className="App">
         <Router>
-          <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+          <Navbar
+            loggedIn={this.state.loggedIn}
+            setLoggedIn={this.setLoggedIn}
+          />
           <Switch>
-              
-              {/* <Route exact path='/signup' component={Signup} /> */}
-              
-              <PrivateRoute exact path='/update' component={UpdateRestaurant} />
+            {/* <Route exact path='/signup' component={Signup} /> */}
 
-              <PrivateRoute exact path='/restaurantlist' component={RestaurantList} />
-              <PrivateRoute exact path='/restaurantlist/:id' component={RestaurantDetail} />
-            
-              <PrivateRoute path='/dashboard' component={Dashboard} />
-              <PrivateRoute path='/dashboard' component={Footer} />
-              <PrivateRoute exact path='/' component={Home} />
-              <PrivateRoute exact path='/mypassport' component={MyPassport} />
-              <Route exact path='/signup' component={Signup} />
-              <Route exact path='/login' 
-                render={props => <Login {...props} setLoggedIn={setLoggedIn} />}
-              />
-              <Route component={Login} />
+            <PrivateRoute exact path="/update" component={UpdateRestaurant} />
 
-             
+            <PrivateRoute
+              exact
+              path="/restaurantlist"
+              component={RestaurantList}
+            />
+            <PrivateRoute
+              exact
+              path="/restaurantlist/:id"
+              component={RestaurantDetail}
+            />
+
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/dashboard" component={Footer} />
+            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/mypassport" component={MyPassport} />
+            <Route exact path="/signup" component={Signup} />
+            <Route
+              exact
+              path="/login"
+              render={props => (
+                <Login
+                  {...props}
+                  loggedIn={this.state.loggedIn}
+                  setLoggedIn={this.setLoggedIn}
+                />
+              )}
+            />
+            <Route component={Login} />
           </Switch>
         </Router>
-         <div className="container">
-                 <AddRestModal />
-                 {/* <Test /> */}
-                 <EditRestModal />
-
+        <div className="container">
+          <AddRestModal />
+          {/* <Test /> */}
+          <EditRestModal />
         </div>
       </div>
-
-
-  );
+    );
+  }
 }
 
-
-
-
-
-
 export default connect(null, { setUser })(App);
-
